@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>透明度运动</title>
+</head>
+<style type="text/css">
+	body,div{
+	margin: 0;
+	padding: 0;
+	}
+
+	div{
+	width: 200px;
+	height: 200px;
+	background: red;
+	filter: alpha(opacity:100);   /*IE浏览器专用*/
+	opacity:1;  /*这是数值*/
+	margin:20px;
+	float: left;
+	}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oDiv = document.getElementsByTagName('div');
+		for(var i=0,l=oDiv.length;i<l;i++){
+			oDiv[i].alpha = 100;
+			oDiv[i].timer = null;
+			oDiv[i].onmouseover=function(){
+				startMove(this,30);
+			}
+			oDiv[i].onmouseout=function(){
+				startMove(this,100);
+			}
+		}
+		
+	}
+
+	function startMove(obj, target){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var speed = 0;
+			if(obj.alpha > target){
+				speed = -10;
+			}else{
+				speed = 10;
+			}
+			if(obj.alpha == target){
+				clearInterval(obj.timer);
+			}else{
+				obj.alpha +=speed;
+				obj.style.opacity = obj.alpha/100;
+				obj.style.filter = 'alpha(opacity:'+speed+')';
+			}
+
+
+		},30);
+	}
+	
+</script>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4"></div>
+</body>
+</html>

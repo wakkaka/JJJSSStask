@@ -1,0 +1,149 @@
+<!--基本思路：
+	1.页面由一个大div构成，大div包括title和content两个小div；
+	2.为实现标签，需要把title和content的内容匹配，将标题和内容分别取出来存在titles、contents数组中，并在68行给每个标题的li赋id以供匹配内容；
+	3.之后给鼠标悬经绑定事件，实现经过相应标题显示相应内容的功能；
+
+	ps：还是看慕课网教程写出来的。。和例子中的样式还是有微妙的区别，没能做到一模一样，比如说：
+		1.例子中字体是12px/1.5,但是我要设置成12px/2才能和他一样；
+		2.例子中没给大div设border，我设置以后就和例子的宽度有微妙的差别。。
+	嘛。。总体还是参考了其他东西做出来的，想要独立实现还是稍稍困难点。
+
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>简易选项卡</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			font: 12px/2  Tahoma;
+			list-style: none;
+		}
+		.my_tap{
+			width: 450px;
+			height: auto;
+			border:1px solid #000;
+			margin:10px auto;
+		}
+		.tap_title{
+			width: 449px;
+			height: 30px;
+			background: #000;
+			padding: 0 1px 0 0;
+		}
+		.content ul{
+			line-height: 25px;
+		}
+		.tap_title li{
+			height: 29px;
+			float: left;
+			padding: 0 20px;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+			cursor: pointer;
+		}
+		.tap_title li.select{
+			background: #ccc;
+			color:#000;
+			border-bottom-color: #000;
+		}
+		.tap_title li a:hover{
+
+			color: #000;
+		}
+		.content .mod{
+			margin:12px 30px;
+		}
+		.content .mod ul li{
+			list-style-type: disc;
+		}
+	</style>
+
+	<script type="text/javascript">
+		function $(id){
+			return typeof id ==='string'?document.getElementById(id):id;
+		}
+		window.onload=function(){
+			var titiles = $('tap_title').getElementsByTagName('li'),
+				contents = $('content').getElementsByTagName('div');
+			for(var i=0;i<titiles.length;i++){
+				titiles[i].id = i;
+				titiles[i].onmouseover = function(){
+					for(var j=0;j<titiles.length;j++){
+						titiles[j].className = '';
+						contents[j].style.display = 'none';
+					}
+					this.className ='select';
+					contents[this.id].style.display = 'block';
+				}
+			}
+			
+		}
+	</script>
+</head>
+
+<body>
+	<div class="my_tap" id="my_tap">
+		<div class="tap_title" id="tap_title">
+			<ul>
+				<li class="select">第一课</li>
+				<li>第二课</li>
+				<li>第三课</li>
+			</ul>
+		</div>
+		<div class="content" id="content">
+			<div class="mod" style="display: block">
+				<ul>
+		            <li>网页特效原理分析</li>
+		            <li>响应用户操作</li>
+		            <li>提示框效果</li>
+		            <li>事件驱动</li>
+		            <li>元素属性操作</li>
+		            <li>动手编写第一个JS特效</li>
+		            <li>引入函数</li>
+		            <li>网页换肤效果</li>
+		            <li>展开/收缩播放列表效果</li>
+	        	</ul>
+			</div>
+			<div class="mod" style="display: none">
+				<ul>
+		            <li>改变网页背景颜色</li>
+		            <li>函数传参</li>
+		            <li>高重用性函数的编写</li>
+		            <li>126邮箱全选效果</li>
+		            <li>循环及遍历操作</li>
+		            <li>调试器的简单使用</li>
+		            <li>典型循环的构成</li>
+		            <li>for循环配合if判断</li>
+		            <li>className的使用</li>
+		            <li>innerHTML的使用</li>
+		            <li>戛纳印象效果</li>
+		            <li>数组</li>
+		            <li>字符串连接</li>
+        		</ul>
+			</div>
+			<div class="mod" style="display: none">
+				<ul>
+		            <li>JavaScript组成：ECMAScript、DOM、BOM，JavaScript兼容性来源</li>
+		            <li>JavaScript出现的位置、优缺点</li>
+		            <li>变量、类型、typeof、数据类型转换、变量作用域</li>
+		            <li>闭包：什么是闭包、简单应用、闭包缺点</li>
+		            <li>运算符：算术、赋值、关系、逻辑、其他运算符</li>
+		            <li>程序流程控制：判断、循环、跳出</li>
+		            <li>命名规范：命名规范及必要性、匈牙利命名法</li>
+		            <li>函数详解：函数构成、调用、事件、传参数、可变参、返回值</li>
+		            <li>定时器的使用：setInterval、setTimeout</li>
+		            <li>定时器应用：站长站导航效果</li>
+		            <li>定时器应用：自动播放的选项卡</li>
+		            <li>定时器应用：数码时钟</li>
+		            <li>程序调试方法</li>
+        		</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

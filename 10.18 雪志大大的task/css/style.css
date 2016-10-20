@@ -1,0 +1,68 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-size:12px;
+	list-style: none;
+}
+
+.my_tab{
+	width: 298px;
+	height: 98px;
+	margin: 10px;
+	border: 1px solid #eee;
+	overflow: hidden;
+}
+
+.tab_title{
+	height: 27px;
+	position: relative;
+	background: #f7f7f7;
+}
+
+.tab_title ul{
+	position: absolute;
+	width: 301px;     /*???????*/
+	left: -1px;
+}
+
+.tab_title li{
+	float: left;
+	width: 58px;
+	height: 26px;
+	line-height:26px;
+	padding: 0 1px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	overflow: hidden;
+	background: #fff;
+	background: #f7f7f7;
+}
+
+.tab_title li.select{
+	background: #fff;
+	border-bottom-color: #fff;
+	border-left: 1px solid #eee; 
+	border-right: 1px solid #eee;
+	padding: 0;
+	font-weight: bold;
+}
+
+.my_tab li a:link, .my_tab li a:visited{
+	text-decoration: none;
+	color: #000;
+}
+
+.my_tab li a:hover{
+	color: #f90;
+}
+
+.tab_content .mod{
+	margin: 10px 6px;
+}
+
+.tab_content .mod ul li{
+	float: left;
+	width: 143px;
+	height: 25px;
+	overflow: hidden;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件流</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="按钮" id="btn" onclick="sayHello()">
+		<input type="button" value="按钮2" id="btn2">
+	    <input type="button" value="按钮3" id="btn3">
+	    <a href="event.html" id='go'>跳转</a>
+	</div>
+	<script type="text/javascript">
+	//普通的添加事件方法
+		function sayHello(event){
+			alert(event.target.id);
+			event.stopPropagation();
+		}
+	
+	//！！DOM级对IE不起作用！！
+	
+	//DOM0级添加事件方法
+		var btn2 = document.getElementById('btn2');
+		btn2.onclick = function(){
+			alert('这是一个通过DOM0级添加的属性！');
+		}
+		//btn2.onclick = 'null';
+	
+	//DOM2级添加事件方法
+	/*	var btn3 = document.getElementById("btn3");
+		btn3.addEventListener('click',sayHello,false);
+		//btn3.removeEventListener('click',sayHello,false);
+	
+	//IE中的事件添加(IE11不再支持)
+	var btn3 = document.getElementById("btn3");
+	btn3.attachEvent('onclick', sayHello);
+*/
+
+	//实现跨浏览器的事件添加
+	var eventUtil = {
+		//添加句柄
+		addHandler:function(element, type, handler) {
+			if(element.addEventListener){						//支持DOM2级
+				element.addEventListener(type,handler,false);
+			}else if(element.attachEvent){						//支持IE
+				element.attachEvent('on'+type, handler);
+			}else{
+				element['on'+type] = handler;					//支持DOM0级
+			}
+		},
+
+		//删除句柄
+		removeHandler:function(element, type, handler) {
+			if(element.removeEventListener){					//支持DOM2级
+				element.removeEventListener(type,handler,false);
+			}else if(element.detachEvent){						//支持IE
+				element.detachEvent('on'+type, handler);
+			}else{
+				element['on'+type] = null;						//支持DOM0级
+			}
+		}
+	}
+	//事件冒泡的例子
+	function showBox(){
+		alert('这是放botton的box！');
+	}
+
+	//取消标签所具有的默认功能
+	function stopGoto(event){
+		event.stopPropagation();
+		event.preventDefault();
+	}
+
+	eventUtil.addHandler(btn3,'click',sayHello)
+
+	//事件冒泡的例子
+	var box = document.getElementById('box');
+	eventUtil.addHandler(box,'click',showBox);
+
+	//取消标签所具有的默认功能
+	var go = document.getElementById('go');
+	eventUtil.addHandler(go,'click',stopGoto);
+	</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多物体运动</title>
+	<style type="text/css">
+body,div{
+	margin: 0;
+	padding:0;
+}	
+body,li{
+	margin:20px;
+	padding: 0;
+}
+
+li{
+	width: 200px;
+	height: 100px;
+	background: #ccc;
+	position: relative;
+	left: -200px;
+	top: 0;
+	border: 10px solid #000;
+}
+
+
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	var oLi1= document.getElementById('li1');
+	var oLi2= document.getElementById('li2');
+	oLi1.onmouseover=function(){startMove(oLi1,'width',400)};
+	oLi1.onmouseout=function(){startMove(oLi1,'width',200)};
+	oLi2.onmouseover=function(){startMove(oLi2,'height',400)};
+	oLi2.onmouseout=function(){startMove(oLi2,'height',100)};
+}
+
+function startMove(obj,attr,target){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		var currAttr = parseInt(getStyle(obj,attr));
+		var speed = (target - currAttr)/8;
+
+		speed = speed>0 ? Math.ceil(speed): Math.floor(speed);
+		if(currAttr == target){
+			clearInterval(obj.timer);
+		}else{
+			obj.style[attr] = currAttr + speed + 'px';
+		} 
+	},30);
+}
+
+function getStyle(obj,attr){
+	if(obj.currentStyle){
+		return obj.currentStyle[attr];
+	}else{
+		return getComputedStyle(obj,false)[attr];
+	}
+}
+</script>
+
+
+</head>
+<body>
+<ul>
+<li id="li1"></li></br>
+<li id="li2"></li>
+</ul>
+</body>
+</html>

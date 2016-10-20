@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> 事件</title>  
+  <script type="text/javascript">
+   function count(){  
+    var a = document.getElementById("txt1").value;
+    var b = document.getElementById("txt2").value;
+	var op = document.getElementById("select").value;
+    var sum = " ";
+	if(op=="+"){
+        sum = parseFloat("a") + parseFloat("b");
+        document.getElementById("fruit").value = sum;
+	}
+    if(op=="-"){
+        sum = parseFloat("a") - parseFloat("b");
+        document.getElementById("fruit").value = sum;
+    } 
+    if(op=="*"){
+        sum = parseFloat("a") * parseFloat("b");
+        document.getElementById("fruit").value = sum;
+    }
+    if(op=="/"){
+        if(b!==0){
+        sum = parseFloat("a")-parseFloat("b");
+        document.getElementById("fruit").value = sum;
+        }else
+        {
+            document.write("被除数不能为0！")
+        }
+    } 
+   }
+  </script> 
+ </head> 
+ <body>
+   <input type='text' id='txt1' /> 
+   <select id='select'>
+		<option value='+'>+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+   </select>
+   <input type='text' id='txt2' /> 
+   <input type='button' value=' = ' onClick="count()"/> <!--通过 = 按钮来调用创建的函数，得到结果--> 
+   <input type='text' id='fruit' />   
+ </body>
+</html>
