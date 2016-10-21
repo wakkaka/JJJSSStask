@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>淘宝小图标动画</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;	
+		}
+		.my_block{
+			width: 360px;
+			background: #ebebeb;
+			border:1px solid #d7d7d7;
+			margin:50px auto;
+			overflow: auto;
+			padding: 30px;
+			text-align: center;
+		}
+
+		.my_block a{
+			width:80px;
+			height:80px;
+			background: #fff;
+			text-decoration: none;
+			float:left;
+			border:1px solid #ccc;
+			margin:10px 19px;
+			position: relative;
+		}
+
+		.my_block img{
+			width:40px;
+			height:40px;
+		}
+
+		.my_block i{
+			position: absolute;
+			top:15px;
+			left:20px;
+			opacity: 1;
+		}
+		.my_block p{
+			margin-top:57px;
+			color: #000;
+		}
+
+		.my_block p:hover{
+			color:#777;
+		}
+
+	</style>
+	<script src="js/script.js"></script>
+	<script type="text/javascript">
+		window.onload =function(){
+			var oDiv = document.getElementById('my_block');
+			var oA = oDiv.getElementsByTagName('a');
+			for(var i=0;i<oA.length;i++){
+				oA[i].onmouseover=function(){
+					var oI = this.getElementsByTagName('i')[0];
+					startMove(oI,{top:-10, opacity:0},function(){
+						oI.style.top=40+'px';
+						startMove(oI,{top:15,opacity:100})
+					})
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class='my_block' id='my_block'>
+		<a href="#"><i><img src="icon/game.png"></i><p>游戏</p></a>
+		<a href="#"><i><img src="icon/insurance.png"></i><p>保险</p></a>
+		<a href="#"><i><img src="icon/lottery.png"></i><p>彩票</p></a>
+		<a href="#"><i><img src="icon/money.png"></i><p>财富</p></a>
+		<a href="#"><i><img src="icon/movie.png"></i><p>电影</p></a>
+		<a href="#"><i><img src="icon/sell.png"></i><p>特卖</p></a>
+	</div>
+</body>
+</html>
