@@ -23,11 +23,11 @@ li{
 	border: 5px solid #000;
 }
 
-/*#li3{
+#li3{
 	filter: alpha(opacity:100);
 	opacity: 1;
 }
-*/
+
 
 </style>
 <script type="text/javascript">
@@ -46,11 +46,11 @@ window.onload = function(){
 function startMove(obj,attr,target){
 	clearInterval(obj.timer);
 	obj.timer = setInterval(function(){
-/*		if(attr == 'opacity'){
+		if(attr == 'opacity'){
 			var currAttr = parseFloat(getStyle(obj,attr)) * 100;
-		}else{*/
+		}else{
 			var currAttr = parseInt(getStyle(obj,attr));
-		/*}*/
+		}
 		
 		var speed = (target - currAttr)/8;
 
@@ -58,12 +58,12 @@ function startMove(obj,attr,target){
 		if(currAttr == target){
 			clearInterval(obj.timer);
 		}else{
-			/*if(attr == 'opacity'){
+			if(attr == 'opacity'){
 				obj.style.filter = 'alpha(opacity:'+(currAttr + speed)+')';
 				obj.style.opacity=(currAttr + speed)/100;
-			}else{*/
+			}else{
 				obj.style[attr] = currAttr + speed + 'px';
-			/*}*/
+			}
 			
 		} 
 	},30);
@@ -84,6 +84,7 @@ function getStyle(obj,attr){
 <ul>
 <li id="li1"></li></br>
 <li id="li2"></li></br>
+<li id="li3"></li>
 </ul>
 </body>
 </html>
