@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>循环中的闭包</title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		window.onload=function(){
+			//输出10个10，而不是0-9；
+			//当 console.log 被调用的时候，匿名函数保持对外部变量 i 的引用，此时 for循环已经结束， i 的值被修改成了 10.
+			for(var i=0;i<10;i++){
+				setTimeout(function(){
+					console.log(i);
+				},1000);
+			}
+			//输出0-9；
+			//外部的匿名函数会立即执行，并把j作为它的参数，此时变量e就拥有一个j的
+			//拷贝，当传递给setTimeout的匿名函数执行时，他就拥有了对e的引用，而这
+			//个值是不会被循环所改变的
+			for(var j=0;j<10;j++){
+				(function(e){
+					setTimeout(function(){
+						console.log(e);
+					},1000);
+				})(j);
+			}
+			//功能同上
+			for(var k=0;k<10;k++){
+				setTimeout((function(e){
+					return function(){
+						console.log(e);
+					}
+				})(k),1000);
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

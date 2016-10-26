@@ -1,0 +1,44 @@
+		*{
+			margin: 0;
+			padding: 0;	
+		}
+		.my_block{
+			width: 360px;
+			background: #ebebeb;
+			border:1px solid #d7d7d7;
+			margin:50px auto;
+			overflow: auto;
+			padding: 30px;
+			text-align: center;
+		}
+
+		.my_block a{
+			width:80px;
+			height:80px;
+			background: #fff;
+			text-decoration: none;
+			float:left;
+			border:1px solid #ccc;
+			margin:10px 19px;
+			position: relative;
+		}
+
+		.my_block img{
+			width:40px;
+			height:40px;
+		}
+
+		.my_block i{
+			position: absolute;
+			top:15px;
+			left:20px;
+			opacity: 1;
+		}
+		.my_block p{
+			margin-top:57px;
+			color: #000;
+		}
+
+		.my_block p:hover{
+			color:#777;
+		}

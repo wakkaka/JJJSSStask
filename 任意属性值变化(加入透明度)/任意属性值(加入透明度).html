@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多物体运动</title>
+	<script type="text/javascript" src="js/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript">
+	window.onload = function(){
+		var oLi1= document.getElementById('li1');
+		var oLi2= document.getElementById('li2');
+		var oLi3= document.getElementById('li3');
+		oLi1.onmouseover=function(){startMove(oLi1,'width',400)};
+		oLi1.onmouseout=function(){startMove(oLi1,'width',200)};
+		oLi2.onmouseover=function(){startMove(oLi2,'height',400)};
+		oLi2.onmouseout=function(){startMove(oLi2,'height',100)};
+		oLi3.onmouseover=function(){startMove(oLi3,'opacity',30)};
+		oLi3.onmouseout=function(){startMove(oLi3,'opacity',100)};
+	}
+
+
+	</script>
+
+
+</head>
+<body>
+<ul>
+<li id="li1"></li></br>
+<li id="li2"></li></br>
+<li id="li3"></li>
+</ul>
+</body>
+</html>
