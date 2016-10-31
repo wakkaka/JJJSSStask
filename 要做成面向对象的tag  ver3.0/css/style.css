@@ -1,0 +1,59 @@
+		*{
+			margin: 0;
+			padding: 0;
+			font: 12px/2  Tahoma;
+			list-style: none;
+		}
+		.my_tap{
+			width: 450px;
+			height: auto;
+			border:1px solid #000;
+			margin:10px auto;
+		}
+		.tap_title{
+			width: 449px;
+			height: 30px;
+			background: #000;
+			padding: 0 1px 0 0;
+		}
+		.content ul{
+			line-height: 25px;
+		}
+		.tap_title li{
+			height: 29px;
+			float: left;
+			padding: 0 20px;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+			cursor: pointer;
+		}
+		.tap_title li.select{
+			background: #ccc;
+			color:#000;
+			border-bottom-color: #000;
+		}
+		.tap_title li a:hover{
+
+			color: #000;
+		}
+		.content .mod{
+			margin:12px 30px;
+		}
+		.content .mod ul li{
+			list-style-type: disc;
+		}
+		.layout{
+			margin: 12px 0 0 0;
+			top: 41px;
+			width: 450px;
+			height: 228px;
+			z-index: 1000;
+			position: absolute;
+		    display: none;
+		}
+		.loading{
+			text-align: center;
+			line-height: 235px;
+
+		}
