@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>迭代方法</title> 
+	<script type="text/javascript">
+		var numbers = [1,2,3,4,5,4,3,2,1];  //书96页
+
+		//every()
+		var everyResult = numbers.every(function(item,index,array){
+			return (item > 2);
+		});
+		console.log(everyResult);
+		//some()
+		var someResult = numbers.some(function(item,index,array){
+			return (item>2);
+		});
+		console.log(someResult);
+		//filter()
+		var filterResult = numbers.filter(function(item,index,array){
+			return (item>2);
+		});
+		console.log(filterResult);
+		//map()
+		var mapResult = numbers.map(function(item,index,array){
+			return item*2;
+		});
+		console.log(mapResult);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

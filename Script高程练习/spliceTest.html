@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>spliceTest</title>
+	<script type="text/javascript">
+		var colors = ["red","green","blue"];
+		var removed = colors.splice(0,1);	//splice返回被删除的项，原数组直接发生改变
+											//splice(a,b,c),a代表起始位置，b代表要删除的项数，c代表要插入的项
+		console.log(colors);
+		console.log(removed);
+
+		removed = colors.splice(1,0,'yellow','orange');
+		console.log(colors);
+		console.log(removed);
+
+		removed = colors.splice(1,1,'red','purple');
+		console.log(colors);
+		console.log(removed);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

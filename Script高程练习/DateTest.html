@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Date</title>
+	<script type="text/javascript">
+		//Date.parse()
+		var someDate = new Date(Date.parse('May 25, 2004'));
+		console.log(someDate);
+		//Date.UTC()
+		var y2k = new Date(Date.UTC(2000,0));//缺省位全部为0
+		var allFives = new Date(Date.UTC(2005,4,5,0,55,55));//输出为2005.5.5 8:55:55 第四位的时间有问题，貌似加了8小时，估计和时区有关
+		console.log(y2k,allFives);
+
+		//Date.now()
+		var start = Date.now();
+		setTimeout(function(){
+			var stop = +new Date();//+代表取现在时间
+			var result = stop - start;
+			console.log(start,stop,result);
+		},2000);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
