@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family:"微软雅黑"
 }
 
 .flexBox{
@@ -14,18 +15,14 @@
 	display: flex;
 	background-color: rgb(27,168,185);
 	flex:1;
+	height: 0;
 }
 
 .header .headDiv{
 	flex:1;
-	flex-flow: row nowrap;
 	display: flex;
 	align-items: center;
 	padding: 0 50px;
-}
-
-.header .headDiv span{
-	height: 10px;
 }
 
 .header .leftDiv{
@@ -41,34 +38,55 @@
 }
 
 .header .headDiv .leftSpan{
-	font-size: 50px;
+	width:39px;
+	height:39px;
+	border-top: 3px solid #fff;
+	border-left: 3px solid #fff;
+	transform: rotate(-45deg);
 }
-
+.header .headDiv .midSpan{
+	font-size: 50px;
+	font-weight: bold;
+	color: #fff;
+}
+.header .headDiv .rightSpan{
+	font-size: 45px;
+	font-weight: bold;
+	color: #fff;
+}
 .footer{
+	height: 0;
 	flex:1;
 	display: flex;
 }
 
 .footer div{
+	display: flex;
 	flex:1;
 	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
 }
-
 .footer div span{
-	height: 10px;
+	font-size: 45px;
+	color: rgb(104,104,104);
 }
 
 .body{
+	height: 0;
 	flex:11;
 	display: flex;
 	flex-flow: column wrap;
 }
 
 .body div{
+	display: flex;
+	align-items: center;
+	padding-left: 35px;
 	border:1px solid #d7d7d7;
 	flex:1;
 }
 
 .body div span{
-	height: 10px;
+	font-size: 45px;
 }
