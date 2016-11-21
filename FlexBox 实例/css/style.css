@@ -72,6 +72,10 @@
 	color: rgb(104,104,104);
 }
 
+.footer div .select{
+	color: rgb(27,168,185);
+}
+
 .body{
 	height: 0;
 	flex:11;
