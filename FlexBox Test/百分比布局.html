@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>百分比布局</title>
+</head>
+<style type="text/css">
+.Grid {
+  display: flex;
+}
+
+.Grid-cell {
+  flex: 1;
+}
+
+.Grid-cell.u-1of3 {
+  flex: 0 0 33.3333%;
+}
+
+.Grid-cell.u-1of4 {
+  flex: 0 0 25%;
+}
+</style>
+<body>
+  <div class="Grid">
+	  <div class="Grid-cell u-1of4" style="background-color: #eee">...</div>
+	  <div class="Grid-cell"  style="background-color: #fcc">...</div>
+	  <div class="Grid-cell u-1of3" style="background-color: #fef">...</div>
+  </div>
+</body>
+</html>
