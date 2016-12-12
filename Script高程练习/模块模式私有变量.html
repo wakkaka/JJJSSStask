@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>模块模式</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var singleton = function(){
+				var privateVariable = 10;
+
+				function privateFunction(){
+					return false;
+				}
+				return{
+					publicProperty: true,
+					publicMethod : function(){
+						privateVariable++;
+						return privateFunction();
+					}
+				}
+			}();//没有圆括号就不能调用publicMethod,这里使用圆括号使这个匿名函数立即执行
+
+			console.log(singleton.privateVariable);
+			console.log(singleton.publicMethod());
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

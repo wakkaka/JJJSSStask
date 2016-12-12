@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原型属性</title>
+	<script type="text/javascript">
+		function Person(){
+
+		}
+		Person.prototype.name = "Nicholas";
+		Person.prototype.age = 29;
+		Person.prototype.job = "Engineer";
+		Person.prototype.sayName = function(){
+			alert(this.name);
+		};
+
+		var person1 = new Person();
+		var person2 = new Person();
+
+		person1.name = "Greg";
+		console.log(person1.name);
+		console.log(person2.name);
+
+		delete person1.name;
+		console.log(person1.name);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
