@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>inner属性</title>
+	<script type="text/javascript">
+		window.onload=function(){
+		console.log(window.innerHeight,window.innerWidth);
+		window.resizeTo(100,100);//没啥效果
+		var baiduW = window.open("http://www.baidu.com","baiduWindow","height=400,width=400,top=10,left=10,resizable=yes");
+		//baiduW.resizeTo(800,800);//这个有效
+	}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
