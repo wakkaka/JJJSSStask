@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM中子节点的复制操作</title>
+	<script type="text/javascript">
+		var myList = document.body;
+		var deepList = myList.cloneNode(true);
+		console.log(deepList.childNodes.length,deepList.childNodes);
+
+		var shallowList = myList.cloneNode(false);
+		console.log(shallowList.childNodes.length,shallowList.childNodes);
+	</script>
+	<style type="text/css">
+		.div1{
+			width: 100px;
+			height: 100px;
+			background: #efefef;
+		}
+	</style>
+</head>
+<body>
+    <div class="div1"></div>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+</body>
+</html>

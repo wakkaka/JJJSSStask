@@ -1,0 +1,231 @@
+<template>
+  <div class="wrapper">
+    <div class="inner">
+      <div class="water">
+        <img class="img" src="../../water.png"></img>
+        <text>记点滴</text>
+      </div>
+      <div class="diary">
+        <img class="img" src="../../logo.png"></img>
+        <text>写日记</text>
+      </div>
+      <div class="sum">
+        <div class="sumDiv">
+          <text class="sumCont">1</text>
+          <text class="sumCont">点滴</text>
+        </div>
+        <div class="sumDiv">
+          <text class="sumCont">0</text>
+          <text class="sumCont">日记</text>
+        </div>
+        <div class="sumDiv">
+          <text class="sumCont">1</text>
+          <text class="sumCont">本月</text>
+        </div>
+        <div class="sumDiv">
+          <text class="sumCont">1</text>
+          <text class="sumCont">今天</text>
+        </div>        
+      </div>
+    </div>
+    <scroller class="oRoller">
+      <div class="item" repeat="item in items" id="item-{{$index}}">
+        <div class="item-content">
+          <div class="item-imgbox">
+            <img class="item-img" src="{{item.img}}" alt="" />
+          </div>
+          <div class="item-info">
+            <div class="item-info-detail">
+              <text class="title">{{item.title}}</text>
+              <div class="detail-info">
+                <text class="desc">{{item.desc}}</text>
+              </div>
+            </div>
+          </div>
+          <div class="item-rightbox">
+            <img class="item-right" src="{{item.right}}" alt="" />
+          </div>
+        </div>
+      </div>
+    </scroller>
+    <div class="up" onclick="goToTop">
+      <img class="img" src=""></img>
+    </div>
+  </div>
+</template>
+
+<style>
+.header {
+  padding: 25;
+  background-color: #37c7e0;
+  border-bottom-color: #37c7e0;
+  border-bottom-width: 2;
+  border-bottom-style: solid;
+}
+.oRoller{
+  display: flex;
+}
+.item {
+  padding: 20;
+  flex:1;
+  border-bottom-width: 1;
+  border-bottom-style: solid;
+  border-bottom-color: #37c7e0;
+}
+.item-content {
+  flex-direction: row;
+  background-color: #ffffff;
+}
+.item-imgbox {
+  height: 70;
+  width: 70;
+  margin-right: 20;
+  margin-top: 30;
+}
+.item-img {
+  width: 70;
+  height: 70;
+}
+.item-rightbox {
+  height: 50;
+  width: 50;
+  margin-left: 40;
+  margin-top: 30;
+}
+.item-right {
+  width: 50;
+  height: 50;
+}
+.item-info {
+  height: 130;
+  width: 510;
+  justify-content: center;
+  position: relative;
+}
+.item-info-detail {
+  position: relative;
+  color: #A2A2A2;
+}
+.desc {
+  lines: 4;
+  text-overflow: ellipsis;
+  font-size: 26;
+  line-height: 30;
+  color: #44818c;
+}
+.title {
+  lines: 1;
+  text-overflow: ellipsis;
+  font-size: 32;
+  color: #44818c;
+  line-height: 40;
+}
+.detail-info {
+  margin-top: 15;
+}
+.inner {
+  padding: 30;
+  padding-bottom: 10;
+  padding-top: 100;
+  background-color: #37c7e0;
+  color: #ffffff;
+}
+.water{
+  padding-right: 120;
+  padding-bottom: 25;
+  position: absolute;
+  left: 150px;
+  border-right-color: #cccccc;
+  border-right-width: 1;
+  border-right-style: solid;
+}
+.diary{
+  padding-bottom: 25;
+  left: 450px;
+}
+.sum{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 30;
+  padding-right: 30;
+  margin-top: 50;
+}
+.sumDiv{
+  text-align: center;
+}
+.sumCont {
+  font-size: 25;
+}
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.up {
+  width: 70;
+  height: 70;
+  position: fixed;
+  right: 20;
+  bottom: 20;
+}
+.img {
+  width: 95;
+  height: 95;
+}
+</style>
+
+<script>
+var dom = require('@weex-module/dom') || {}
+
+module.exports = {
+  data: {
+      items: [{
+        img: '../../timeline.png',
+        title: '时间轴',
+        desc: '轻轻拨动时间轴线，重温珍藏的记忆',
+        right: '../../arrow.png'
+      },{
+        img: '../../camera.png',
+        title: '相册',
+        desc: '感动瞬间常在，让记忆不再泛黄',
+        right: '../../arrow.png'
+      },{
+        img: '../../calendar.png',
+        title: '日历与十年今日',
+        desc: '你过去的每一天，都记录在这里',
+        right: '../../arrow.png'
+      },{
+        img: '../../collection.png',
+        title: '日记集',
+        desc: '人生，只有一次，日记是你岁月的保险柜',
+        right: '../../arrow.png'
+      },{
+        img: '../../search.png',
+        title: '搜索与标签',
+        desc: '给记录分类，让回忆变得更清晰',
+        right: '../../arrow.png'
+      },{
+        img: '../../star.png',
+        title: '纪念日',
+        desc: '人生短暂，纪念每一个重要的日子',
+        right: '../../arrow.png'
+      },{
+        img: '../../setting.png',
+        title: '设置',
+        right: '../../arrow.png'
+      }]
+    },
+  created: function () {
+  },
+  methods: {
+    goToTop: function (e) {
+      dom.scrollToElement(this.$el('item-0'), {
+        offset: -100
+      })
+    },
+  }
+}
+</script>
