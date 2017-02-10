@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>contentDocument</title>
+	<script type="text/javascript">
+		var iframe = document.getElementById("myFrame");
+		var iframeDoc = iframe.contentDocument||iframe.contentWindow.document;
+		console.log(iframe,iframeDoc);
+	</script>
+</head>
+<body>
+	<p id="myFrame">123</p> <!-- 这里myFrame应该是一个框架而不是一个普通标签，所以这个例子是错误的-->
+</body>
+</html>
