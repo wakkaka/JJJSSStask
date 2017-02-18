@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表单属性</title>
+	<script type="text/javascript">
+		window.onload=function(){
+			var form = document.getElementById("form1");
+			var field = form.elements[0];
+			console.log(field);
+			//修改value属性
+			field.value = "Another value";
+			//检查form属性的值
+			alert(field.form === form);
+			//把焦点设置到当前字段
+			field.focus();
+			//禁用当前字段
+			field.disabled = false;
+			//修改type属性(不推荐)
+			field.type="checkbox";
+		}
+	</script>
+</head>
+<body>
+	<form id="form1" method="post">
+		<ul>
+			<li><input type="text" name="color" value="red">Red</li>
+			<li><input type="radio" name="color" value="red">Blue</li>
+			<li><input type="radio" name="color" value="red">Green</li>
+			<li><input type="radio" name="color" value="red">Yellow</li>
+		</ul>
+	</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>151</title>
+	<script type="text/javascript">
+		  var reverseWords = function(str) {
+		  var arr = [], tmp;
+		  for (var i = 0, l = str.length; i < l; ++i) {
+		    if (str[i] !== ' ') {
+		      tmp = tmp === undefined ? str[i] : tmp + str[i];
+		    } else {
+		      if (tmp !== undefined) {
+		        arr.push(tmp);
+		        tmp = undefined;
+		        alert("This!");
+		      }
+		    }
+		  }
+		  if (tmp) arr.push(tmp);
+		  return arr;
+		};
+
+		var str1 = " ";
+		console.log(str1.length);
+		var str2 = reverseWords(str1);
+		console.log(str1,str2);
+		console.log(str2.reverse().join(' '));
+		console.log(str1.split(' ').reverse().join(' '));
+		if((str2.reverse().join(' ')) === (str1.split(' ').reverse().join(' '))){
+			console.log(1);
+		}else{
+			console.log(2);
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

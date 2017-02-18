@@ -6,7 +6,8 @@
 <body>
 	<form method="post">
 		<input type="text" name="username" value="">
-		<input type="button" value="Echo Username" onclick="alert(username.value)"><!--如果当前元素是一个表单输入元素，则作用域中还会包含访问表单元素（父元素）的入口-->
+		<input type="button" value="Echo Username" onclick="alert(username.value)"><!--如果当前元素是一个表单输入元素，则作用域中还会包含访问表单元素（父元素）的入口、‘【》：-->
 	</form>
+	<input type="button" value="Click me!"  onclick="alert(event.type)">
 </body>
 </html>
