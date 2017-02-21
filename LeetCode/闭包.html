@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>unknow</title>
+	<script type="text/javascript">
+		var aaa = (function(){
+			var a = 1;
+			function bbb(){
+				a++;
+				alert(a);
+			}
+			function ccc(){
+				a++;
+				alert(a);
+			}
+			return{
+				b:bbb,
+				c:ccc
+			}
+		})();
+		aaa.b();
+		aaa.c()
+	</script>
+</head>
+<body>
+
+</body>
+</html>
