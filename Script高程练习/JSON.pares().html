@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>parse()</title>
+	<script type="text/javascript">
+		var book = {
+			"title":"Professinal JavaScrpt",
+			"author":[
+			"Nicholas C. Zakers"],
+			edtion:3,
+			year:2011,
+			releaseDate:new Date(2011,11,1)
+		};
+		var jsonText = JSON.stringify(book);
+		console.log("jsonText: ",jsonText);
+		var bookCopy = JSON.parse(jsonText,function(key,value){
+			if(key == "releaseDate"){
+				return new Date(value);
+			}else{
+				return value;
+			}
+		});
+		//测试初始的JS对象是否可以调用Date中的方法
+		console.log("转换前调用getFullYear():",book.releaseDate.getFullYear());
+		//测试JS-->JSON-->JS转换后的对象是否可以调用Date中的方法
+		console.log("转换后调用getFullYear():",bookCopy.releaseDate.getFullYear());
+	</script>
+</head>
+<body>
+
+</body>
+</html>
