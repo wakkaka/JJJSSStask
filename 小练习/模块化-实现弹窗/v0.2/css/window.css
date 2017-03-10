@@ -1,0 +1,18 @@
+.window_boundingBox{
+	position: fixed;
+	width: 500px;
+	height: 300px;
+	border:1px solid #000;
+	left: 50%;/*本条和下条为水平居中，#css负值的作用#*/
+	top:100px;
+	box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.window_boundingBox input{
+	position: absolute;
+	width: 100px;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -50px;
+
+}
