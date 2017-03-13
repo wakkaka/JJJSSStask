@@ -1,0 +1,147 @@
+*{
+	margin:0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+	cursor: pointer;
+}
+.header{
+	width: 100%;
+	height: 50px;
+	background: #398dee;
+}
+.header span{
+	line-height: 50px;
+	padding-left: 20px;
+	font-size: 25px;
+	color: #fff;
+	display: block;
+}
+.type_list{
+	margin-top: 10px;
+	line-height: 30px;
+	font-size: 12px;
+	color: #393939;
+}
+.type_list span{
+	padding-left:60px; 
+	display: block;
+}
+.type_list_all span{
+	padding-left: 75px;
+	display: block;
+}
+.type_item span{
+	padding-left: 90px;
+	display: block;
+}
+.type_icon{
+	margin-top: 4px;/*这里使用top的话图标就会重叠,absolute定位中top，left的基准是最后一次定位的祖先元素*/
+	left: 26px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background:url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 14.76923076923077% 83.38461538461539%;
+}
+.type_file_icon{
+	margin-top: 2px;
+	left: 40px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 59.07692307692308% 83.38461538461539%;
+}
+.type_item_icon{
+	margin-top: 5px;
+	left: 54px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 48.555% 90%;
+}
+.list_item_select{
+	background: #398dee;
+	color: #fff;
+}
+.left{
+	position: absolute;
+	width: 240px;
+	height: 100%;
+	background: #f5f5f5;
+	border-right: 1px solid #e0e1e5;
+}
+
+.mid{
+	left:240px;
+	position: absolute;
+	width: 320px;
+	height: 100%;
+	background: #fff;
+	border-right: 1px solid #e0e1e5;
+}
+.mid_header{
+	height: 60px;
+	border-bottom:1px solid #e0e1e5;
+}
+.mid_header div{
+	float: left;
+	width: 90px;
+	margin: 2px 0 2px 15px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
+}
+.mid_header div span{
+	margin-left: 10px;
+}
+.select_item_all{
+	top:18px;
+	margin-left:-30px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 80% 65.948%;	
+}
+.select_item_todo{
+	top:21px;
+	margin-left:-25px;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 74.5% 96%;
+}
+.select_item_done{
+	top:21px;
+	margin-left:-25px;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 69.1% 96%;
+}
+
+.right{
+	position: absolute;
+	left:560px;
+	height: 100%;
+	right: 0;
+}
+.right_header{
+	height: 60px;
+	border-bottom: 1px solid #e0e1e5;
+}
+.right_date{
+	height: 50px;
+	border-bottom: 1px solid #e0e1e5;
+}
+.right_content{
+	height: 50px;
+	border-bottom: 1px solid #e0e1e5;
+}
