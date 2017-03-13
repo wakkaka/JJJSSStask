@@ -1,5 +1,12 @@
+require.config({
+	paths:{
+		jqueryUI:'http://code.jquery.com/ui/1.10.4/jquery-ui'
+	}
+});
 require(['jquery','window'],function($,w){
+	//给按钮#a绑定click事件
 	$('#a').click(function(){
+		//new一个Window实例来完成弹窗功能，使用字典格式传参
 		new w.Window().alert({
 			title : "提示",
 			content : "Welcome!",
@@ -13,7 +20,8 @@ require(['jquery','window'],function($,w){
 			height : 150,
 			y: 50,
 			hasCloseBtn : true,
-			text4AlertBtn : "好的"
+			text4AlertBtn : "好的",
+			dragHandle:".window_header"
 		});
 	})
 })

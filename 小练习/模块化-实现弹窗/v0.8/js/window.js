@@ -9,13 +9,20 @@ define(['jquery'],function($){
 			height:300,
 			hasCloseBtn:false,
 			skinClassName:null,
-			text4AlertBtn:"确定"
+			text4AlertBtn:"确定",
+			hasMask:true
 		}
 	}
 
 	Window.prototype = {
 		alert : function(cfg){
 			var CFG = $.extend(this.cfg,cfg);
+
+			if(CFG.hasMask){
+				mask = $('<div class="window_mask"></div>');
+				mask.appendTo("body");
+			}
+			
 			var boundingBox = $(
 				'<div class="window_boundingBox">' +
 				'<div class="window_header">'+CFG.title+'</div>'+
@@ -26,6 +33,7 @@ define(['jquery'],function($){
 			btn = boundingBox.find(".window_footer input");
 			boundingBox.appendTo("body");
 			btn.click(function(){
+				mask && mask.remove();
 				CFG.hander4AlertBtn && CFG.hander4AlertBtn();
 				boundingBox.remove();
 			});
@@ -35,14 +43,17 @@ define(['jquery'],function($){
 				left : (CFG.x || (window.innerWidth - CFG.width)/2) + "px",
 				top : (CFG.y ||(window.innerHeight - CFG.height)/2) + "px"
 			});
+
 			if(CFG.hasCloseBtn){
 				var closeBtn = $('<span class="window_closeBtn">X</span>');
 				closeBtn.appendTo(boundingBox);
 				closeBtn.click(function(){
+					mask && mask.remove();
 					CFG.hander4CloseBtn&&CFG.hander4CloseBtn();
 					boundingBox.remove();
 				});
 			};
+
 			if(CFG.skinClassName){
 				boundingBox.addClass(CFG.skinClassName);
 			};
