@@ -2,52 +2,40 @@
 <html>
 <head>
 	<title>某道云笔记</title>
-	<script type="text/javascript" src="./js/bundle.js"></script>
+	<script type="text/javascript" src="bundle.js"></script>
 </head>
 <body>
-	<div class="header"><span>Wakkaka Tools</span></div>
+	<div class="header">
+		<i class="header_icon"></i>
+		<span>Wakkaka Tools</span>
+	</div>
 	<div class="main">
 		<div class="left">
+			<div class="list_add">
+				<div class="add_list">
+					<i class="add_list_icon"></i>
+					<span>新建分类</span>
+				</div>
+				<div class="add_item">
+					<i class="add_item_icon"></i>
+					<span>新建任务</span>
+				</div>
+			</div>
 			<ul class="type_list">
 				<li>
 					<i class="type_icon"></i>
-					<span>所有任务</span>
+					<span class="allItem">所有任务</span>
 				</li>
 				<li>
 					<i class="type_icon"></i>
-					<span>分类列表</span>
-					<ul class="type_list_all">
-						<li>
-							<li class="type_file_icon"></li>
-							<span class="list_item_select">默认分类</span>
-							<ul class="type_item">
-								<li>
-									<i class="type_item_icon"></i>
-									<span>1</span>
-								</li>
-								<li>
-									<i class="type_item_icon"></i>
-									<span>2</span>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<li class="type_file_icon"></li>
-							<span>ife项目</span>
-							<ul class="type_item">
-								<li>
-									<i class="type_item_icon"></i>
-									<span>1</span>
-								</li>
-								<li>
-									<i class="type_item_icon"></i>
-									<span>2</span>
-								</li>
-							</ul>
-							</ul>
-						</li>
-					</ul>
+					<span class="allClass">分类列表</span>
 				</li>
+				<ul class="type_list_all">
+						<li>
+							<i class="type_file_icon"></i>
+							<span class="list_item_select 1stClass defaultClass">默认分类</span>
+						</li><ul class="type_item"></ul>
+				</ul>
 			</ul>
 		</div>
 		<div class="mid">
@@ -65,12 +53,45 @@
 					<span>已完成</span>
 				</div>
 			</div>
-			<div class="mid_main"></div>
+			<div class="mid_main">
+				<ul class="mid_main_list">
+					
+				</ul>
+			</div>
 		</div>
 		<div class="right">
-			<div class="right_header"></div>
-			<div class="right_date"></div>
-			<div class="right_content"></div>
+			<div class="right_header">
+				<div class="todo_title_display">
+					<span>任务标题：</span>
+					<span class="todo_title_span"></span>
+				</div>
+				
+				<div class="todo_title_div" style="display: none;">
+					<span>任务标题：</span>
+					<input type="text" class="todo_title todo_input" placeholder="在此处输入任务标题（少于20字）" maxlength="20" >
+				</div>
+				<i class="todo_done_icon" style="display: none;"></i>
+				<i class="todo_edit_icon" style="display: none;"></i>
+				<div class="todo_save">
+					保存
+				</div>
+			</div>
+			<div class="right_date">
+				<div class="todo_date_display">
+					<span>任务日期：</span>
+					<span class="todo_date_span"></span>
+				</div>
+				
+				<div class="todo_date_div" style="display: none;">
+					<span>任务日期：</span>
+					<input type="text" class="todo_date todo_input">
+				</div>
+				
+			</div>
+			<div class="right_content">
+				<div class="todo_content_div"></div>
+				<textarea maxlength="1000" class="todo_textarea" placeholder="在此输入任务内容（少于1000字）"></textarea>
+			</div>
 		</div>
 	</div>
 </body>

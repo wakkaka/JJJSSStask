@@ -63,20 +63,105 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports) {
+
+//通用功能
+(function(window){
+	'use strict';
+	//通过选择器获得元素
+	window.qs = function(selector,scope){
+		return(scope || document).querySelector(selector);
+	};
+	window.qsa = function(selector,scope){
+		return(scope || document).querySelectorAll(selector);
+	};
+
+	//绑定事件
+	window.$on = function(target,type,callback,useCapture){
+		target.addEventListener(type,callback,!!useCapture);
+	};
+	//给符合选择器的元素绑定事件
+	window.$delegate = function(target,selector,type,handler){
+		function dispatchEvent(event){
+			var targetElement = event.target;
+			var potentialElements = window.qsa(selector,target);
+			var hasMatch = Array.prototype.indexOf.call(potentialElements,targetElement)>=0;
+			if(hasMatch){
+				handler.call(targetElement,event);
+			}
+		}
+		var useCapture = type === 'blur'||type === 'focus';
+		window.$on(target,type,dispatchEvent,useCapture);
+	}
+
+	//找到给定标签名的父节点
+	window.$parent = function(element,tagName){
+		if(!element.parentNode){
+			return;
+		}
+		//console.log(element.parentNode);
+		if(element.parentNode.tagName.toLowerCase() === tagName.toLowerCase()){
+			return element.parentNode;
+		}
+		return window.$parent(element.parentNode,tagName);
+	}
+	//找到给定标签名的子节点
+	window.$child = function(element,tagName){
+		if(!element.childNodes){
+			return;
+		}
+		console.log(element.childNodes);
+		for(var i=0,len=element.childNodes.length;i<len;i++){
+			var this_childNode = element.childNodes[i];
+			//console.log('tagName' in this_childNode);
+			if('tagName' in this_childNode){
+				//console.log(this_childNode);
+				if(this_childNode.tagName.toLowerCase() === tagName.toLowerCase()){
+					return this_childNode;
+				}
+			}	
+		}
+		
+	}
+})(window);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(0);
+var List = {}
+
+List.addTypeList = function(){
+	var add_class_name = prompt('请输入新建分类的名称');
+	alert(add_class_name);
+	if(add_class_name != null){
+		var add_to_location = $child($parent(qs('.list_item_select'),'ul'),'ul');
+		//console.log(add_to_location);
+		var new_class_list = document.createElement('li');
+		new_class_list.innerHTML = "<li class='"+ add_class_name +"'><i class='type_item_icon'></i><span>"+ add_class_name +"</span></li>";
+		add_to_location.appendChild(new_class_list);
+	}	
+}
+
+module.exports = List
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4);
+var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(3)(content, {});
+var update = __webpack_require__(5)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -93,7 +178,7 @@ if(false) {
 }
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -321,10 +406,10 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -510,7 +595,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -762,21 +847,21 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(8)();
 // imports
 
 
 // module
-exports.push([module.i, "*{\r\n\tmargin:0;\r\n\tpadding: 0;\r\n}\r\nul,li{\r\n\tlist-style: none;\r\n\tcursor: pointer;\r\n}\r\n.header{\r\n\twidth: 100%;\r\n\theight: 50px;\r\n\tbackground: #398dee;\r\n}\r\n.header span{\r\n\tline-height: 50px;\r\n\tpadding-left: 20px;\r\n\tfont-size: 25px;\r\n\tcolor: #fff;\r\n\tdisplay: block;\r\n}\r\n.type_list{\r\n\tmargin-top: 10px;\r\n\tline-height: 30px;\r\n\tfont-size: 12px;\r\n\tcolor: #393939;\r\n}\r\n.type_list span{\r\n\tpadding-left:60px; \r\n\tdisplay: block;\r\n}\r\n.type_list_all span{\r\n\tpadding-left: 75px;\r\n\tdisplay: block;\r\n}\r\n.type_item span{\r\n\tpadding-left: 90px;\r\n\tdisplay: block;\r\n}\r\n.type_icon{\r\n\tmargin-top: 4px;/*这里使用top的话图标就会重叠,absolute定位中top，left的基准是最后一次定位的祖先元素*/\r\n\tleft: 26px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground:url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 14.76923076923077% 83.38461538461539%;\r\n}\r\n.type_file_icon{\r\n\tmargin-top: 2px;\r\n\tleft: 40px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 59.07692307692308% 83.38461538461539%;\r\n}\r\n.type_item_icon{\r\n\tmargin-top: 5px;\r\n\tleft: 54px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 48.555% 90%;\r\n}\r\n.list_item_select{\r\n\tbackground: #398dee;\r\n\tcolor: #fff;\r\n}\r\n.left{\r\n\tposition: absolute;\r\n\twidth: 240px;\r\n\theight: 100%;\r\n\tbackground: #f5f5f5;\r\n\tborder-right: 1px solid #e0e1e5;\r\n}\r\n\r\n.mid{\r\n\tleft:240px;\r\n\tposition: absolute;\r\n\twidth: 320px;\r\n\theight: 100%;\r\n\tbackground: #fff;\r\n\tborder-right: 1px solid #e0e1e5;\r\n}\r\n.mid_header{\r\n\theight: 60px;\r\n\tborder-bottom:1px solid #e0e1e5;\r\n}\r\n.mid_header div{\r\n\tfloat: left;\r\n\twidth: 90px;\r\n\tmargin: 2px 0 2px 15px;\r\n\tline-height: 60px;\r\n\ttext-align: center;\r\n\tfont-size: 12px;\r\n\tcursor: pointer;\r\n}\r\n.mid_header div span{\r\n\tmargin-left: 10px;\r\n}\r\n.select_item_all{\r\n\ttop:18px;\r\n\tmargin-left:-30px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 80% 65.948%;\t\r\n}\r\n.select_item_todo{\r\n\ttop:21px;\r\n\tmargin-left:-25px;\r\n\tposition: absolute;\r\n\twidth: 22px;\r\n\theight: 22px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 74.5% 96%;\r\n}\r\n.select_item_done{\r\n\ttop:21px;\r\n\tmargin-left:-25px;\r\n\tposition: absolute;\r\n\twidth: 22px;\r\n\theight: 22px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 69.1% 96%;\r\n}\r\n\r\n.right{\r\n\tposition: absolute;\r\n\tleft:560px;\r\n\theight: 100%;\r\n\tright: 0;\r\n}\r\n.right_header{\r\n\theight: 60px;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n}\r\n.right_date{\r\n\theight: 50px;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n}\r\n.right_content{\r\n\theight: 50px;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n}", ""]);
+exports.push([module.i, "*{\r\n\tmargin:0;\r\n\tpadding: 0;\r\n}\r\nul,li{\r\n\tlist-style: none;\r\n\tcursor: pointer;\r\n}\r\n.header{\r\n\twidth: 100%;\r\n\theight: 50px;\r\n\tbackground: #398dee;\r\n}\r\n.header_icon{\r\n\tposition: absolute;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\twidth: 26px;\r\n\theight: 26px;\r\n\tbackground-position: 0 0;\r\n\tleft:20px; \r\n\ttop:12px;\r\n}\r\n.header span{\r\n\tline-height: 50px;\r\n\tpadding-left: 55px;\r\n\tfont-size: 23px;\r\n\tcolor: #fff;\r\n\tdisplay: block;\r\n}\r\n\r\n.list_add{\r\n\theight: 40px;\r\n\tline-height: 40px;\r\n\twidth: 240px;\r\n\tcolor: #393939;\r\n\tfont-size: 12px;\r\n\tpadding: 10px 0;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n}\r\n.add_list{\r\n\tposition: absolute;\r\n\tleft: 50px;\r\n\tcursor: pointer;\r\n}\r\n.add_list_icon{\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 86.815% 8%;\r\n\tposition: absolute;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\ttop: 10px;\r\n\tleft: -30px;\r\n}\r\n.add_item{\r\n\tposition: absolute;\r\n\tleft: 160px;\r\n\tcursor: pointer;\r\n}\r\n.add_item_icon{\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 100% 72.94832826747721%;\r\n\tposition: absolute;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\ttop: 10px;\r\n\tleft: -30px;\r\n}\r\n.type_list{\r\n\tmargin-top: 10px;\r\n\tline-height: 30px;\r\n\tfont-size: 12px;\r\n\tcolor: #393939;\r\n}\r\n.type_list span{\r\n\tpadding-left:60px; \r\n\tdisplay: block;\r\n}\r\n.type_list_all span{\r\n\tpadding-left: 75px;\r\n\tdisplay: block;\r\n\r\n}\r\n.type_item span{\r\n\tpadding-left: 90px;\r\n\tdisplay: block;\r\n}\r\n.type_icon{\r\n\tmargin-top: 4px;/*这里使用top的话图标就会重叠,absolute定位中top，left的基准是最后一次定位的祖先元素*/\r\n\tleft: 26px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground:url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 14.76923076923077% 83.38461538461539%;\r\n}\r\n.type_file_icon{\r\n\tmargin-top: 2px;\r\n\tleft: 40px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 59.07692307692308% 83.38461538461539%;\r\n}\r\n.type_item_icon{\r\n\tmargin-top: 5px;\r\n\tleft: 54px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 48.555% 90%;\r\n}\r\n.list_item_select{\r\n\tbackground: #398dee;\r\n\tcolor: #fff;\r\n\tborder: 1px solid #2280ed;\r\n}\r\n.left{\r\n\tposition: absolute;\r\n\twidth: 240px;\r\n\theight: 100%;\r\n\tbackground: #f5f5f5;\r\n\tborder-right: 1px solid #e0e1e5;\r\n}\r\n\r\n.mid{\r\n\tleft:240px;\r\n\tposition: absolute;\r\n\twidth: 320px;\r\n\theight: 100%;\r\n\tbackground: #fff;\r\n\tborder-right: 1px solid #e0e1e5;\r\n}\r\n.mid_header{\r\n\theight: 60px;\r\n\tborder-bottom:1px solid #e0e1e5;\r\n}\r\n.mid_header div{\r\n\tfloat: left;\r\n\twidth: 90px;\r\n\tmargin: 2px 0 2px 15px;\r\n\tline-height: 60px;\r\n\ttext-align: center;\r\n\tfont-size: 12px;\r\n\tcursor: pointer;\r\n}\r\n.mid_header div span{\r\n\tmargin-left: 10px;\r\n}\r\n.select_item_all{\r\n\ttop:18px;\r\n\tmargin-left:-30px;\r\n\tposition: absolute;\r\n\twidth: 24px;\r\n\theight: 24px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 80% 65.948%;\t\r\n}\r\n.select_item_todo{\r\n\ttop:21px;\r\n\tmargin-left:-25px;\r\n\tposition: absolute;\r\n\twidth: 22px;\r\n\theight: 22px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 74.5% 96%;\r\n}\r\n.select_item_done{\r\n\ttop:21px;\r\n\tmargin-left:-25px;\r\n\tposition: absolute;\r\n\twidth: 22px;\r\n\theight: 22px;\r\n\tbackground: url(\"https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg\") no-repeat;\r\n\tbackground-position: 69.1% 96%;\r\n}\r\n\r\n.right{\r\n\tposition: absolute;\r\n\tleft:560px;\r\n\theight: 100%;\r\n\tright: 0;\r\n\tmin-width: 280px;\r\n}\r\n.right_header{\r\n\theight: 60px;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n\tline-height: 60px;\r\n\tpadding: 0 20px;\r\n\tfont-weight: bold;\r\n}\r\n.right_date{\r\n\theight: 50px;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n\tline-height: 50px;\r\n\tpadding: 0 20px;\r\n}\r\n.right_content{\r\n\theight: 100%;\r\n\tborder-bottom: 1px solid #e0e1e5;\r\n\tline-height: 50px;\r\n\tpadding: 0 25px;\r\n}\r\n.right_content div{\r\n\tpadding: 0 20px;\r\n\tfont-size: 14px;\r\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -785,7 +870,7 @@ exports.push([module.i, "*{\r\n\tmargin:0;\r\n\tpadding: 0;\r\n}\r\nul,li{\r\n\t
 // XXXXX: This file should not exist. Working around a core level bug
 // that prevents using fs at loaders.
 //var fs = require('fs'); // XXX
-var path = __webpack_require__(1);
+var path = __webpack_require__(3);
 
 var commentRx = /^\s*\/(?:\/|\*)[@#]\s+sourceMappingURL=data:(?:application|text)\/json;(?:charset[:=]\S+?;)?base64,(?:.*)$/mg;
 var mapFileCommentRx =
@@ -922,10 +1007,10 @@ Object.defineProperty(exports, 'mapFileCommentRegex', {
   }
 });
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13).Buffer))
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -983,7 +1068,7 @@ function cssWithMappingToString(item) {
 	if (!cssMapping) {
 		return content;
 	}
-	var convertSourceMap = __webpack_require__(5);
+	var convertSourceMap = __webpack_require__(7);
 	var sourceMapping = convertSourceMap.fromObject(cssMapping).toComment({multiline: true});
 	var sourceURLs = cssMapping.sources.map(function (source) {
 		return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
@@ -993,7 +1078,7 @@ function cssWithMappingToString(item) {
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -1004,7 +1089,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -1094,7 +1179,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1215,7 +1300,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -1242,7 +1327,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1256,9 +1341,9 @@ module.exports = g;
 
 
 
-var base64 = __webpack_require__(9)
-var ieee754 = __webpack_require__(8)
-var isArray = __webpack_require__(7)
+var base64 = __webpack_require__(11)
+var ieee754 = __webpack_require__(10)
+var isArray = __webpack_require__(9)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -3036,13 +3121,23 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function(__dirname) {__webpack_require__(2);
 __webpack_require__(0);
+var List = __webpack_require__(1);
+console.log(__dirname);
+window.onload=function(){
+	$on(qs('.add_list'),'click',function(){
+		List.addTypeList();
+	});
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ })
 /******/ ]);

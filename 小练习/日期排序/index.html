@@ -1,0 +1,55 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<ul>
+    <li>2011-1-1</li>
+    <li>2011-1-7</li>
+    <li>2011-1-2</li>
+    <li>2011-3-1</li>
+    <li>2011-2-1</li>
+</ul>
+<script type='text/javascript'>
+var ul = document.getElementsByTagName('ul')[0];
+var lis = ul.getElementsByTagName('li');
+var ux = [];
+for (var i=0; i<lis.length; i++){
+    var tmp = {};
+    tmp.dom = lis[i];
+    tmp.date = new Date(lis[i].firstChild.data.replace(/-/g,'/'));
+    console.log(lis[i].firstChild.data.replace(/-/g,'/'));
+    console.log(tmp.date);
+    ux.push(tmp);
+}
+    var testdate = new Date("2017/2/12");
+    console.log(testdate);
+ux.sort(function(a,b){
+    return a.date - b.date;
+});
+for (var i=0; i<ux.length; i++){
+    ul.appendChild(ux[i].dom);
+}
+
+//字典格式的排序
+var dic={x:5,z:1,y:0};//输出  {z:1，x:2，y:3}
+console.log(Object.keys(dic));
+var sdic=Object.keys(dic).sort(function(a,b){return dic[a]-dic[b]});
+console.log(sdic);
+ for(ki in sdic){                     
+    document.writeln(sdic[ki]+":"+dic[sdic[ki]]+",");
+ }
+//二维数组测试
+ var todos = [];
+ todos[0] = 'class';
+ todos[1] = 'utity';
+ todos[0] = [];
+ todos[0][0] = '0';
+ todos[0][1] = '1';
+ var len = todos.length;
+ var len1 = todos[0].length;
+ alert(typeof(todos[1]) == 'string');
+ console.log(todos,len,len1);
+</script>
+</body>
+</html>

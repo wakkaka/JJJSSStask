@@ -11,15 +11,89 @@ ul,li{
 	height: 50px;
 	background: #398dee;
 }
+.header_icon{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	width: 26px;
+	height: 26px;
+	background-position: 0 0;
+	left:20px; 
+	top:12px;
+}
 .header span{
 	line-height: 50px;
-	padding-left: 20px;
-	font-size: 25px;
+	padding-left: 55px;
+	font-size: 23px;
 	color: #fff;
 	display: block;
 }
+.main{/*没有这个的话main下的子元素height:100%就会等于窗体长度，就会出现滚动条*/
+	position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.list_add{
+	height: 40px;
+	line-height: 40px;
+	width: 240px;
+	color: #393939;
+	font-size: 12px;
+	padding: 10px 0;
+	border-bottom: 1px solid #e0e1e5;
+}
+.add_list{
+	position: absolute;
+	left: 50px;
+	cursor: pointer;
+}
+.add_list:hover{
+	color: rgb(118, 176, 243);
+}
+.add_item:hover{
+	color: rgb(118, 176, 243);
+}
+.add_list_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 86.815% 8%;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	left: -30px;
+}
+.add_item{
+	position: absolute;
+	left: 160px;
+	cursor: pointer;
+}
+.add_item_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 100% 72.94832826747721%;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	left: -30px;
+}
+.delete_icon{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 93.9209726443769% 37.38601823708207%;
+	width: 20px;
+	height: 20px;
+	right: 26px;
+	margin-top: -24px;
+	display: none;
+}
+.type_list li:hover {
+	background: rgba(118, 176, 243, 0.3);
+}
+.type_list li:hover .delete_icon{/*这里用来替代鼠标移入移出事件*/
+    display: block;
+}
 .type_list{
-	margin-top: 10px;
 	line-height: 30px;
 	font-size: 12px;
 	color: #393939;
@@ -31,6 +105,7 @@ ul,li{
 .type_list_all span{
 	padding-left: 75px;
 	display: block;
+
 }
 .type_item span{
 	padding-left: 90px;
@@ -61,7 +136,7 @@ ul,li{
 	width: 24px;
 	height: 24px;
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
-	background-position: 48.555% 90%;
+	background-position: 55.333% 90%;
 }
 .list_item_select{
 	background: #398dee;
@@ -76,7 +151,7 @@ ul,li{
 }
 
 .mid{
-	left:240px;
+	left:241px;
 	position: absolute;
 	width: 320px;
 	height: 100%;
@@ -86,6 +161,8 @@ ul,li{
 .mid_header{
 	height: 60px;
 	border-bottom:1px solid #e0e1e5;
+	position: relative;
+	line-height: 60px;
 }
 .mid_header div{
 	float: left;
@@ -98,6 +175,9 @@ ul,li{
 }
 .mid_header div span{
 	margin-left: 10px;
+}
+.mid_header div span:hover{
+	color: rgb(118, 176, 243);
 }
 .select_item_all{
 	top:18px;
@@ -126,22 +206,148 @@ ul,li{
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 69.1% 96%;
 }
-
+.mid_main ul{
+	height: 100%;
+}
+.mid_main li{
+	top: -3px;
+	position: relative;
+    padding: 0 40px;
+    line-height: 52px;
+    border-bottom: 1px solid #e0e1e5;
+    overflow: hidden;
+}
+.thisTitle:hover{
+	background-color: #eaf0fb;	
+}
+.delete_icon_2{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 93.9209726443769% 37.38601823708207%;
+	width: 20px;
+	height: 20px;
+	right: 26px;
+	margin-top: -35px;
+	display: none;
+}
+.this_title:hover  {
+	background-color: #eaf0fb;
+}
+._titleSelect{
+	background-color: #eaf0fb;
+}
+.mid_main_list span{
+	display: block;
+	height: 52px;
+}
+.mid_main_list li:hover .delete_icon_2{
+	display: block;
+}
+.thisDate{
+	top: -3px;
+	height:5px;
+	line-height: 5px !important;
+    position: relative;
+    padding: 15px 25px !important;
+    border-bottom: 1px solid #e0e1e5;
+    overflow: hidden;
+    cursor: default;
+    background: #f5f5f5;
+}
 .right{
 	position: absolute;
 	left:560px;
 	height: 100%;
 	right: 0;
+	min-width: 280px;
 }
 .right_header{
 	height: 60px;
 	border-bottom: 1px solid #e0e1e5;
+	line-height: 60px;
+	padding: 0 20px;
+	font-weight: bold;
+	font-size: 18px;
+}
+.todo_title_display{
+	display: inline;
+}
+.todo_input{
+	width: 300px;
+	line-height: 22px;
+	height: 22px;
+	background-color: transparent;
+	border:0 none;
+	font-size: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	outline:none;/*有了这条input去掉边框后的蓝色部分就消失了*/
+}
+.todo_textarea{
+	width: 100%;
+	height: 100%;
+	border: 0 none;
+	outline: none;
+	background: transparent;
+	font-size: 14px;
+	display: none;
+}
+.todo_done_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 80.1% 96%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 65px;
+	cursor: pointer;
+}
+.todo_edit_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 88% 45%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 20px; 
+	cursor: pointer;
+}
+.todo_save{
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	color: #82B6F4;
+	font-size: 11px;
+	text-align: center;
+	border: 1px solid #e2e2e2;
+	border-radius: 6px;
+	cursor: pointer;
+	background-color: #fff;
+	top: 15px;
+	right: 20px;
+	display: none;
 }
 .right_date{
 	height: 50px;
 	border-bottom: 1px solid #e0e1e5;
+	line-height: 50px;
+	padding: 0 20px;
+	font-size: 18px;
 }
 .right_content{
-	height: 50px;
+	position: absolute;
+	top: 112px;
+	bottom:0;
+	left: 0;
+	right: 0;
 	border-bottom: 1px solid #e0e1e5;
+	line-height: 50px;
+	padding: 25px 25px;
+}
+.right_content div{
+	position: absolute;
+	top: 8px;
+	font-size: 14px;
 }
