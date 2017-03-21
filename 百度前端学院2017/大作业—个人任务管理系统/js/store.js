@@ -10,10 +10,12 @@ Store.store = function(name, callback) {
 	if (!localStorage[name]) {
 		var data = {
 			todos: [],
-			class: []
+			class_1: [],
+			class_2: []
 		};
 
-		data.class[0] = '默认分类';
+		data.class_1[0] = '默认分类';
+		data.class_2[0] = null;
 		localStorage[name] = JSON.stringify(data);
 
 	}
@@ -31,15 +33,15 @@ Store.save = function (updateData, callback, id) {
 
 		// 如果id存在，则更新id的数据
 		if (id) {
-			console.log(id);
-			console.log(updateData);
+			//console.log(id);
+			//console.log(updateData);
 			for (var i = 0; i < todos.length; i++) {
 				if (todos[i].id == id) {
-					console.log("find it!");
+					//console.log("find it!");
 					for (var key in updateData) {
 						todos[i][key] = updateData[key];
 					}
-					console.log(todos);
+					//console.log(todos);
 					break;
 				}
 			}

@@ -1,12 +1,20 @@
 <html>
 <head>
 <title></title>
+<!-- <style type="text/css">
+    li{
+        background: #000;
+    }
+    #li1{
+        background: #fff;
+    }
+</style> -->
 </head>
 <body>
 <ul>
-    <li>2011-1-1</li>
-    <li>2011-1-7</li>
-    <li>2011-1-2</li>
+    <li id="li1">2011-1-1</li>
+    <li id="_222">2011-1-7</li>
+    <li class="test">2011-1-2</li>
     <li>2011-3-1</li>
     <li>2011-2-1</li>
 </ul>
@@ -39,7 +47,7 @@ console.log(sdic);
  for(ki in sdic){                     
     document.writeln(sdic[ki]+":"+dic[sdic[ki]]+",");
  }
-//二维数组测试
+//二维数组测试(fail)
  var todos = [];
  todos[0] = 'class';
  todos[1] = 'utity';
@@ -50,6 +58,31 @@ console.log(sdic);
  var len1 = todos[0].length;
  alert(typeof(todos[1]) == 'string');
  console.log(todos,len,len1);
+todos[3] = null;
+console.log(todos[3] == null);
+console.log(document.querySelector("#_222"));
+
+var test = false;
+if(test){console.log('true!')};
+
 </script>
 </body>
 </html>
+
+
+<!-- for(var i in 数组1){
+    for(var j in 数组2){
+        if(数组2[j] == 数组1[i]){
+            //去重复
+            for(var k in temp){
+                if(数组2[j] != ){
+
+                }
+                temp.push(数组1[i])
+            }
+            
+        }
+    }
+} -->
+
+

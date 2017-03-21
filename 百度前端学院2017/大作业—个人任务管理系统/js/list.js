@@ -1,6 +1,7 @@
 var utility = require('./helper.js');
 var Store = require('./store.js');
 var List = {}
+
 List.id = "";
 
 //新建一个localstorage
@@ -15,7 +16,8 @@ List.addNewTypeList = function(){
 
 	//获取localstorage中的class
 	var data = JSON.parse(localStorage[window._dbName]);
-	var storageClass = data.class;
+	var class_1 = data.class_1;
+	var class_2 = data.class_2;
 
 	if(now_click.className.indexOf('allClass')>=0){
 		//新建一个一级类
@@ -23,16 +25,17 @@ List.addNewTypeList = function(){
 			var add_to_location = utility.$child(utility.$parent(utility.qs('.list_item_select'),'ul'),'ul');
 			//console.log(add_to_location);
 			var new_class_list = document.createElement('li');
-			new_class_list.innerHTML = "<i class='type_file_icon'></i><span  class='"+ add_class_name + " 1stClass" +"'>"+ add_class_name +"</span><i class='delete_icon'></i>";
+			new_class_list.innerHTML = "<i class='type_file_icon'></i><span  class='"+ "_" + add_class_name + " 1stClass" +"'>"+ add_class_name +"</span><i class='delete_icon'></i>";
 			add_to_location.appendChild(new_class_list);
 			new_class_list = document.createElement('ul');
 			new_class_list.className = 'type_item';
 			utility.qs('.type_list_all').appendChild(new_class_list);
 
-			console.log(storageClass.length);
-			storageClass[storageClass.length] = add_class_name;
-			console.log(storageClass.length);
+
+			class_1[class_1.length] = add_class_name;
+			class_2[class_1.length-1] = null;
 			localStorage[window._dbName] = JSON.stringify(data);
+			console.log(localStorage[window._dbName]);
 		}	
 	} else{
 		//新建一个二级类
@@ -40,21 +43,23 @@ List.addNewTypeList = function(){
 			var add_to_location = utility.$parent(utility.qs('.list_item_select'),'li').nextSibling;
 			console.log(add_to_location);
 			var new_class_list = document.createElement('li');
-			new_class_list.innerHTML = "<i class='type_item_icon'></i><span  class='"+ add_class_name + " 2ndClass" +"'>"+ add_class_name +"</span><i class='delete_icon'></i>";
+			new_class_list.innerHTML = "<i class='type_item_icon'></i><span class='" + "_" +add_class_name + " 2ndClass" +"'>"+ add_class_name +"</span><i class='delete_icon'></i>";
 			add_to_location.appendChild(new_class_list);
 
 			var this_class = now_click.innerHTML;
-			for(var i=0,len=storageClass.length;i<len;i++){
-				if(storageClass[i] == this_class){
+			for(var i=0,len=class_1.length;i<len;i++){
+				if(class_1[i] == this_class){
 					//该一级分类下没有二级分类
-					if(typeof(storageClass[i]) == 'string'){
-						storageClass[i] = [];
-						storageClass[i][0] = add_class_name;
+					if(class_2[i] == null){
+						class_2[i] = [];
+						class_2[i][0] = add_class_name;
 						localStorage[window._dbName] = JSON.stringify(data);
+						console.log(localStorage[window._dbName]);
 					}else{
 						//该一级分类下已有二级分类
-						storageClass[i][storageClass[i].length] = add_class_name;
+						class_2[i][class_2[i].length] = add_class_name;
 						localStorage[window._dbName] = JSON.stringify(data);
+						console.log(localStorage[window._dbName]);
 					}
 				}
 			}
@@ -75,6 +80,64 @@ List.showAddIcon = function(){
 
 	if((now_click.className.indexOf('1stClass'))>=0 || (now_click.className.indexOf('2ndClass'))>=0 || (now_click.className.indexOf('allItem'))>=0){
 		utility.qs('.add_item').style = "display:inline";
+	}
+}
+
+//刷新或者启动时左侧栏分类的显示
+List.showListClass = function(){
+
+	//获取当前localstorage存储的分类
+	var data = JSON.parse(localStorage[window._dbName]);
+	var class_1 = data.class_1;
+	var class_2 = data.class_2;
+
+	for(var i=0,len=class_1.length;i<len;i++){
+		if(class_1[i] != null){
+			if(class_1[i] != '默认分类'){
+				//当前不是默认分类时，新建一级分类的显示
+				var this_class_name_1 = class_1[i];
+				var add_to_location = utility.qs('.type_list_all');
+				//console.log(add_to_location);
+				var new_class_list = document.createElement('li');
+				var temp_1 = '<i class="type_file_icon"></i>'
+						   + '<span class="_"{{className}}" 1stClass">"{{className}}"</span>'
+						   + '<i class="delete_icon"></i>';
+
+				var replace_reg = new RegExp('"{{className}}"', 'g');//replace()第一次参数传入字符串时，默认只替换第一个，若传入是正则，可用/g
+				temp_1 = temp_1.replace(replace_reg,this_class_name_1);
+				//console.log(this_class_name_1);
+				new_class_list.innerHTML = temp_1;
+				add_to_location.appendChild(new_class_list);
+				new_class_list = document.createElement('ul');
+				new_class_list.className = 'type_item';
+				add_to_location.appendChild(new_class_list);
+			}
+			if(class_2[i] != null){
+				//一级分类下有二级分类时，新建二级分类的显示
+				for(var j=0,len2=class_2[i].length;j<len2;j++){
+					var this_class_name_2 = class_2[i][j];
+					var add_to_location_2;
+
+					if(class_1[i] == '默认分类'){
+						//当前是默认分类时
+						add_to_location_2 = utility.$parent(utility.qs('.' + class_1[i]),'li').nextSibling;
+					}else{
+						//不是默认分类时
+						add_to_location_2 = utility.$parent(utility.qs('._' + class_1[i]),'li').nextSibling;
+					}
+
+					//console.log(utility.$parent(utility.qs('.' + class_1[i]),'li'));
+					var new_class_list_2 = document.createElement('li');
+					var temp_2 = '<i class="type_item_icon"></i>'
+					           + '<span class="_"{{className}}" 2ndClass">"{{className}}"</span>'
+					           + '<i class="delete_icon"></i>';
+					var replace_reg_2 = new RegExp('"{{className}}"', 'g');//replace()默认只执行一次，若第一个参数是正则，可以使用/g
+					temp_2 = temp_2.replace(replace_reg_2,this_class_name_2);
+					new_class_list_2.innerHTML = temp_2;
+					add_to_location_2.appendChild(new_class_list_2);
+				}
+			}
+		}
 	}
 }
 
@@ -106,8 +169,8 @@ List.addNewTodo = function(){
 //编辑事件，显示2个input和textarea，并将编辑后的内容写回页面
 List.editItem = function(){
 	//全局id,用于识别该任务是否已经存在
-	List.id = utility.qs('.todo_title_span').id;
-	//console.log(id);
+	List.id = utility.qs('.todo_title_span').id.split('').slice(1).join('');
+	//console.log(List.id);
 	var right_header = utility.$parent(event.target,'div');
 	var right = utility.$parent(right_header,'div');
 	var right_date = utility.qs('.right_date',right);
@@ -136,9 +199,9 @@ List.editItem = function(){
 	utility.qs('input',right_header).focus();
 	}
 
-//保存右侧任务编辑区域的修改
+//保存事件 ,保存右侧任务编辑区域的修改
 List.saveTodo = function(){
-	console.log(List.id);
+	//console.log(List.id);
 	var updateData = {};
 	var right_header = utility.$parent(event.target,'div');
 	var right = utility.$parent(right_header,'div');
@@ -184,7 +247,19 @@ List.saveTodo = function(){
 	    utility.qs('.todo_done_icon').style = "display:inline";
 	    utility.qs('.todo_edit_icon').style = "display:inline";
 	    Store.save(updateData,function(){},List.id);
-	    List.listDisplay();
+
+	    //点击保存后，还原中间栏的状态
+	    var now_click_class = utility.qs('.list_item_select').innerHTML;
+		var is_1st_class;
+		//console.log(now_click_class);
+		if(utility.qs('.list_item_select').className.indexOf('1stClass')>=0){
+			//一级分类
+			is_1st_class = true;
+		}else{
+			//二级分类
+			is_1st_class = false;	
+		}
+	    List.listDisplay(now_click_class, is_1st_class);
 	} else{//新任务，创建新任务
 		//任务标题
 		updateData.title = utility.qs('input',right_header).value;
@@ -219,7 +294,7 @@ List.saveTodo = function(){
 	    	updateData.class_1 = now_click.innerHTML;
 	    } else if(now_click.className.indexOf('allItem')>=0){
 	    	//默认分类
-	    	updateData.class_1 = 'defaultClass';
+	    	updateData.class_1 = '默认分类';
 	    } else{
 	    	//有两级分类
 	    	updateData.class_2 = now_click.innerHTML;
@@ -227,48 +302,108 @@ List.saveTodo = function(){
 	    	updateData.class_1 = utility.qs('span',previousBro).innerHTML;
 	    }
 		Store.save(updateData);
-		List.listDisplay();
+
+
+		//点击保存后，还原中间栏的状态
+	    var now_click_class = utility.qs('.list_item_select').innerHTML;
+		var is_1st_class;
+		//console.log(now_click_class);
+		if(utility.qs('.list_item_select').className.indexOf('1stClass')>=0){
+			//一级分类
+			is_1st_class = true;
+		}else{
+			//二级分类
+			is_1st_class = false;	
+		}
+	    List.listDisplay(now_click_class, is_1st_class);
 	}
 	
 }
 
-//右侧任务内容的显示
+//click中间任务标题后，右侧内容的显示
 List.showListItem = function(){
+	//获取当前选中的中间栏的任务
+	//console.log(now_mid_select);
 	var targetId = event.target.id;
 	var targetLi = utility.$parent(event.target,'li');
 	var thisTitleList = utility.qsa('.this_title');
 	var todos = JSON.parse(localStorage[window._dbName]).todos;
 	var temp_list = {};
+	var todo_done_icon = utility.qs('.todo_done_icon');
+	var todo_done_icon_done = utility.qs('.todo_done_icon_done');
+
+	//清空任务完成图标
+	todo_done_icon.style.display = 'none';
+	todo_done_icon_done.style.display = 'none';
+
 	for(var i=0,len=todos.length;i<len;i++){
-		if(todos[i].id == targetId){
+		if(('_' + todos[i].id) == targetId){
 			temp_list.title = todos[i].title;
 			temp_list.date = todos[i].date;
 			temp_list.content = todos[i].content;
+			temp_list.complete = todos[i].complete;
 		}
 	}
 	//console.log(temp_list);
 	//console.log(targetId);
 	//console.log(thisTitleList);
+	
+	//右侧显示标题、日期、内容
 	utility.qs('.todo_title_span').innerHTML = temp_list.title;
 	utility.qs('.todo_date_span').innerHTML = temp_list.date;
 	utility.qs('.todo_content_div').innerHTML = temp_list.content;
+
+	//显示目前任务是否已完成并显示正确的图标
+	if(temp_list.complete == 'false'){
+		//未完成图标
+		//console.log(todo_done_icon.style.display);
+		todo_done_icon.style.display = 'inline';
+	}else{
+		//已完成图标
+		//console.log(todo_done_icon_done.display);
+		todo_done_icon_done.style.display = 'inline';
+	}
+	
 	utility.qs('.todo_title_span').id = targetId;
 	for(var i=0,len=thisTitleList.length;i<len;i++){
 		thisTitleList[i].className = 'this_title';
 		//console.log(thisTitleList[i].className);
 	}
 	targetLi.className += " _titleSelect";
-	utility.qs('.todo_done_icon').style = "display:inline";
 	utility.qs('.todo_edit_icon').style = "display:inline";
+
+}
+
+//click左侧分类后，中间任务标题的显示
+List.showTodoTitle = function(){
+	var now_click_class = utility.qs('.list_item_select').innerHTML;
+	var is_1st_class;
+	//console.log(now_click_class);
+	if(utility.qs('.list_item_select').className.indexOf('1stClass')>=0){
+		//一级分类
+		is_1st_class = true;
+	}else{
+		//二级分类
+		is_1st_class = false;	
+	}
+	//console.log(now_click_class);
+	
+	List.listDisplay(now_click_class , is_1st_class);
+	//List.listDisplay(class,boolean);  (类名,是否是一级分类)理论上应该写成的样子
 
 }
 
 //删除给定id的任务项目
 List.deleteListItem = function(){
 	var targetId = utility.qs('span',utility.$parent(event.target,'li')).id;
+	targetId = targetId.split("").slice(1).join('');
 	//console.log(targetId);
-	Store.remove(targetId);
-	List.listDisplay();
+	var thisdelete = confirm("确定要删除该任务吗？");
+	if(thisdelete){
+		Store.remove(targetId);
+		List.listDisplay();
+	}
+
 }
 
 
@@ -289,6 +424,8 @@ List.listAddClickEvent = function(){
 		}
 		this.className += ' list_item_select';
 		List.showAddIcon();
+
+		List.showTodoTitle();
 	})
 
 	//给删除绑定绑定事件
@@ -324,14 +461,99 @@ List.listAddClickEvent = function(){
 	//给中间栏的删除图标绑定删除事件
 	var delete_icon = utility.qs('.delete_icon_2');
 	utility.$delegate(title_List,'.delete_icon_2','click',List.deleteListItem);
+
+	//给完成任务图标绑定改变完成状态事件
+	var todo_done_icon = utility.qs('.todo_done_icon');
+	var todo_done_icon_done = utility.qs('.todo_done_icon_done');
+	utility.$on(todo_done_icon,'click',List.completeTodo);
+	utility.$on(todo_done_icon_done,'click',List.completeTodo);
+
+	//给中间栏头部的选项绑定事件
+	utility.$on(utility.qs('.item_all'),'click',List.midHeader);
+	utility.$on(utility.qs('.item_todo'),'click',List.midHeader);
+	utility.$on(utility.qs('.item_done'),'click',List.midHeader);
 }
 
-//中间栏显示任务title
-List.listDisplay = function(){
+//发生改变时，中间栏任务标题的显示
+List.listDisplay = function(thisClass,boolean,view){
+
+	thisClass = thisClass || "";
+	boolean = boolean || "";
+	view = view || "";
+
+	//获取当前中间栏选择的任务的id
+	var now_mid_select= utility.qs('._titleSelect');
+	var now_mid_select_id;
+	if(now_mid_select != null){
+		now_mid_select_id = utility.qs('span',now_mid_select).id;
+		//console.log(now_mid_select_id);
+	}
+	
+	//清空中间栏
 	utility.qs('.mid_main_list').innerHTML = "";
 	var date = JSON.parse(localStorage[window._dbName]);
 	var todos = date.todos;
-	var this_list = [];
+
+	//第一次筛选，判断显示全部任务，还是显示左侧类别栏指定的任务
+	if(thisClass == "" || thisClass == '所有任务' || thisClass == '分类列表'){
+		//thisClass参数为空，代表中间栏列出所有任务
+		todos = date.todos;
+	}else{
+		//有thisClass参数，代表只显示thisClass下的任务
+		if(boolean == true){
+			//要显示的thisClass是一个一级分类
+			var temp_todos = [];
+			for(var i=0,len=todos.length;i<len;i++){
+				if(todos[i].class_1 == thisClass){
+					temp_todos.push(todos[i]);
+				}
+			}
+			//console.log(temp_todos);
+			todos = temp_todos;
+		}else{
+			//要显示的thisClass是一个二级分类
+			var temp_todos_2 = [];
+			for(var i=0,len=todos.length;i<len;i++){
+
+				if(todos[i].class_2 != null){
+					if(todos[i].class_2 == thisClass){
+						temp_todos_2.push(todos[i]);
+					}
+				}
+			}
+			//console.log(temp_todos_2);
+			todos = temp_todos_2;
+		}
+	}
+
+	//第二次筛选，按照所有、未完成、已完成显示任务
+	if(view !== ''){
+		if(view == 'false'){
+			//未完成
+			var temp_todo_view = [];
+			console.log(todos.length);
+			for(var i=0,len=todos.length;i<len;i++){
+				if(todos[i].complete == 'false'){
+					temp_todo_view.push(todos[i]);
+				}
+			}
+			console.log(temp_todo_view);
+			todos =temp_todo_view;
+		}else if(view == 'true'){
+			//已完成
+			var temp_todo_view = [];
+			for(var i=0,len=todos.length;i<len;i++){
+				if(todos[i].complete == 'true'){
+					temp_todo_view.push(todos[i]);
+				}
+			}
+			console.log(temp_todo_view);
+			todos =temp_todo_view;
+		}else{
+			//所有
+		}
+	}
+
 	//console.log(todos);
 	
 	/*//字典排序测试
@@ -351,20 +573,23 @@ List.listDisplay = function(){
 	//按日期对todos进行排序
 	//给todos添加用于排序的sortDate属性
 	//console.log(new Date(todos[0].date.replace(/-/g,'/')));
+	
+	//对todos进行日期从大到小的排序
 	for(var i=0,len=todos.length;i<len;i++){
 		todos[i].sortDate = new Date(todos[i].date.replace(/-/g,'/'));
 	}
 	todos.sort(function(a,b){
-		return a.sortDate - b.sortDate;
+		return b.sortDate - a.sortDate;
 	});
-	console.log(todos);
+	//console.log(todos);
 
+	//找出不重复的时间标题，对任务按时间分类
 	var thisSortDate;
 
 	for(var i=0,len=todos.length;i<len;i++){
 		var listDateTempate = '<li class="thisDate">"{{date}}"</li>';
 		var listTitleTempate =  '<li class="this_title">'
-						  +			'<span id=""{{id}}"">"{{title}}"</span>'
+						  +			'<span id="_"{{id}}"">"{{title}}"</span>'
 						  +			'<i class="delete_icon_2"></i>'
 						  +     '</li>';
 		if(thisSortDate != todos[i].sortDate.getTime()){	
@@ -383,8 +608,103 @@ List.listDisplay = function(){
 		}
 		
 	}
+	//还原清空中间栏之前已经选中的任务标题，使他重新被选中
+	if(now_mid_select_id != null){
+		var temp_now_select = utility.$parent(utility.qs('#'+now_mid_select_id),'li');
+		//console.log(temp_now_select);
+		temp_now_select.className += ' _titleSelect';
+	}
+
 	//console.log(this_list);
 }
+
+//完成任务
+List.completeTodo = function(){
+	//点击完成任务后，找出在localstorage中的位置
+	var select_todo_id = utility.qs('.todo_title_span').id;
+	//console.log(select_todo_id);
+	var data = JSON.parse(localStorage[window._dbName]);
+	var todos = data.todos;
+	var this_index;
+	for(var i=0,len=todos.length;i<len;i++){
+		if(('_'+ todos[i].id) == select_todo_id){
+			this_index = i;
+		}
+	}
+
+	//页面显示的修改
+	var todo_done_icon = utility.qs('.todo_done_icon');
+	var todo_done_icon_done = utility.qs('.todo_done_icon_done');
+
+	//console.log(todo_done_icon.style.display);
+	if(todo_done_icon.style.display == 'inline'){
+		//修改为已完成
+		todos[this_index].complete = 'true';
+		localStorage[window._dbName] = JSON.stringify(data);
+
+		todo_done_icon.style.display = 'none';
+		todo_done_icon_done.style.display = 'inline';
+	}else{
+		//修改为未完成
+		todos[this_index].complete = 'false';
+		localStorage[window._dbName] = JSON.stringify(data);
+
+		todo_done_icon.style.display = 'inline';
+		todo_done_icon_done.style.display = 'none';
+	}
+
+}
+
+//中间栏头部分类的点击
+List.midHeader = function(){
+	//console.log(event.target);
+	var target = event.target;
+	var targetView = event.target.innerHTML;
+	//还原颜色
+	utility.qs('.item_all').className = 'item_all';
+	utility.qs('.item_todo').className = 'item_todo';
+	utility.qs('.item_done').className = 'item_done';
+	//选中颜色
+	target.className += ' mid_header_select';
+
+	List.showViewTitle(targetView);
+}
+
+//中间栏显示 特定选项的 任务
+//view参数：所有，未完成，已完成
+List.showViewTitle = function(view){
+	view = view || '所有';
+
+	var now_click_class = utility.qs('.list_item_select').innerHTML;
+		var is_1st_class;
+		//console.log(now_click_class);
+		if(utility.qs('.list_item_select').className.indexOf('1stClass')>=0){
+			//一级分类
+			is_1st_class = true;
+		}else{
+			//二级分类
+			is_1st_class = false;	
+		}
+
+
+	if(view == '所有'){
+		//所有
+		utility.qs('.item_all').className += ' mid_header_select';
+		List.listDisplay(now_click_class, is_1st_class, 'all');
+	}else if(view == '未完成'){	
+		//未完成
+		List.listDisplay(now_click_class, is_1st_class, 'false') //是否完成
+	}else{
+		//已完成
+		List.listDisplay(now_click_class, is_1st_class, 'true') //是否完成
+	}
+	
+
+
+
+}
+
+
 
 
 

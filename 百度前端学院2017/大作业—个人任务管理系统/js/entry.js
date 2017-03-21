@@ -7,4 +7,6 @@ window.onload=function(){
 	//给所有分类绑定点击事件
 	List.listAddClickEvent();
 	List.listDisplay();
+	List.showListClass();
+
 }

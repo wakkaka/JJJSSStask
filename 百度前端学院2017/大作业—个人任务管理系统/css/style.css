@@ -1,6 +1,7 @@
 *{
 	margin:0;
 	padding: 0;
+	font-family:”微软雅黑”;
 }
 ul,li{
 	list-style: none;
@@ -171,12 +172,18 @@ ul,li{
 	line-height: 60px;
 	text-align: center;
 	font-size: 12px;
+}
+.item_all, .item_todo, .item_done{
 	cursor: pointer;
 }
 .mid_header div span{
 	margin-left: 10px;
 }
 .mid_header div span:hover{
+	color: rgb(118, 176, 243);
+}
+.mid_header_select{
+	margin-left: 10px;
 	color: rgb(118, 176, 243);
 }
 .select_item_all{
@@ -205,6 +212,9 @@ ul,li{
 	height: 22px;
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 69.1% 96%;
+}
+.mid_main{
+
 }
 .mid_main ul{
 	height: 100%;
@@ -296,6 +306,16 @@ ul,li{
 .todo_done_icon{
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 80.1% 96%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 65px;
+	cursor: pointer;
+}
+.todo_done_icon_done{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 69.1% 96%;
 	position: absolute;
 	width: 22px;
 	height: 22px;
