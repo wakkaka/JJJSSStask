@@ -19,7 +19,7 @@
     <li>2011-2-1</li>
 </ul>
 <script type='text/javascript'>
-var ul = document.getElementsByTagName('ul')[0];
+/*var ul = document.getElementsByTagName('ul')[0];
 var lis = ul.getElementsByTagName('li');
 var ux = [];
 for (var i=0; i<lis.length; i++){
@@ -65,6 +65,20 @@ console.log(document.querySelector("#_222"));
 var test = false;
 if(test){console.log('true!')};
 
+*/
+var test = [1,2,3];
+/*test.splice(0,1);
+console.log(test);*/
+
+function fun(arry){
+    /*for(var i=0,len=arry.length;i<len;i++){
+        arry[i] += 5;
+    }*/
+    arry +=1;
+}
+var b =1;
+fun(b);
+console.log(b);
 </script>
 </body>
 </html>

@@ -7,6 +7,7 @@ List.id = "";
 //新建一个localstorage
 Store.store("newtodos");
 console.log(localStorage[window._dbName]);
+console.log(JSON.parse(localStorage[window._dbName]).todos);
 
 //新建分类，在当前选中的目录下新建分类
 List.addNewTypeList = function(){
@@ -156,6 +157,7 @@ List.addNewTodo = function(){
 	utility.qs(".todo_title_div").style = "display:inline";
 	utility.qs(".todo_title_display",right_header).style = "display:none";
 	utility.qs(".todo_save").style = "display:inline";
+	utility.qs(".todo_cancel").style = "display:inline";
 	utility.qs(".todo_date_div").style = "display:inline";
 
 	utility.qs(".todo_date").value = utility.date();
@@ -192,6 +194,7 @@ List.editItem = function(){
 	//console.log(utility.qs('.todo_title_div',right_header));
 	utility.qs('.todo_title_div',right_header).style="display:inline";
 	utility.qs('.todo_save',right_header).style="display:inline";
+	utility.qs(".todo_cancel").style = "display:inline";
 	utility.qs('.todo_date_display',right_date).style="display:none";
 	utility.qs('.todo_date_div',right_date).style="display:inline";
 	utility.qs('div',right_content).style="display:none";
@@ -222,6 +225,7 @@ List.saveTodo = function(){
 		utility.qs(".todo_save").style = "display:none";
 		utility.qs('.todo_title_div',right_header).style="display:none";
 		utility.qs('.todo_title_display',right_header).style="display:inline";
+		utility.qs(".todo_cancel").style = "display:none";
 		
 
 		//任务时间
@@ -275,6 +279,7 @@ List.saveTodo = function(){
 		utility.qs('.todo_date_span',right_date).innerHTML =  utility.qs('input',right_date).value;
 		utility.qs('div',right_content).innerHTML = utility.qs('textarea',right_content).value;
 		utility.qs(".todo_save").style = "display:none";
+		utility.qs(".todo_cancel").style = "display:none";
 		utility.qs('.todo_title_div',right_header).style="display:none";
 		utility.qs('.todo_title_display',right_header).style="display:inline";
 		utility.qs('.todo_date_display',right_date).style="display:inline";
@@ -316,8 +321,43 @@ List.saveTodo = function(){
 			is_1st_class = false;	
 		}
 	    List.listDisplay(now_click_class, is_1st_class);
+
+	    //中间栏选择新创建的任务标题
+		var this_mid_list = utility.qs('.mid_main_list');
+		var this_mid_list_li = utility.qsa('li',this_mid_list);
+		var this_newtodo_id = '#_' + utility.qs('.todo_title_span').id;
+		//console.log(this_mid_list_li);
+		for(var i=0,len=this_mid_list_li.length;i<len;i++){
+			this_mid_list_li[i].className = this_mid_list_li[i].className.replace('_titleSelect','');
+			//console.log(this_mid_list_li[i].className);
+		}
+		var this_newtodo = utility.$parent(utility.qs(this_newtodo_id,this_mid_list),'li');
+		//console.log(this_newtodo_id,this_newtodo);
+		this_newtodo.className  = ' _titleSelect';
+
 	}
 	
+}
+
+//取消事件
+List.todoCancel = function(){
+	
+	//清空标题、日期、内容的输入
+	utility.qs('.todo_title').value = '';
+	utility.qs('.todo_date').value = '';
+	utility.qs('.todo_textarea').value = '';
+
+	//显示
+	utility.qs(".todo_save").style = "display:none";
+	utility.qs(".todo_cancel").style = "display:none";
+	utility.qs('.todo_title_div').style="display:none";
+	utility.qs('.todo_title_display').style="display:inline";
+	utility.qs('.todo_date_display').style="display:inline";
+	utility.qs('.todo_date_div').style="display:none";
+	utility.qs('.todo_content_div').style="display:inline";
+    utility.qs('.todo_textarea').style="display:none";
+    utility.qs('.todo_done_icon').style = "display:inline";
+    utility.qs('.todo_edit_icon').style = "display:inline";
 }
 
 //click中间任务标题后，右侧内容的显示
@@ -401,11 +441,53 @@ List.deleteListItem = function(){
 	var thisdelete = confirm("确定要删除该任务吗？");
 	if(thisdelete){
 		Store.remove(targetId);
-		List.listDisplay();
+		var now_click_class = utility.qs('.list_item_select').innerHTML;
+		var is_1st_class;
+		//console.log(now_click_class);
+		if(utility.qs('.list_item_select').className.indexOf('1stClass')>=0){
+			//一级分类
+			is_1st_class = true;
+		}else{
+			//二级分类
+			is_1st_class = false;	
+		}
+		//console.log(now_click_class);
+		
+		List.listDisplay(now_click_class , is_1st_class);
 	}
 
 }
 
+//左侧栏点击类名的事件
+List.leftClass = function(className){	
+
+	className = className || "";//如果不传参数的话传入的是一个event事件。。
+	//thisListSpan一定要放在绑定里面，以保证每次绑定的时候加入新加入的类
+	var thisListSpan = utility.qsa('span',utility.qs('.type_list'));
+
+    //选中事件,改变样式
+    //console.log(className.type);
+	if(className.type == "click"){
+		//className为空，即不指定要选中某一特定类
+		for(var i=0,len=thisListSpan.length;i<len;i++){
+			thisListSpan[i].className = thisListSpan[i].className.replace("list_item_select","");
+			//console.log('clear!');
+		}
+		this.className += ' list_item_select';
+	}else{
+		//className指定选中某一特定类
+		for(var i=0,len=thisListSpan.length;i<len;i++){
+			thisListSpan[i].className = thisListSpan[i].className.replace("list_item_select","");
+			//console.log('clear!');
+		}
+		utility.qs('._'+className).className += ' list_item_select';
+	}
+
+	//左侧栏上侧两个新建标签的显示
+	List.showAddIcon();
+	//中间栏任务标题的显示
+	List.showTodoTitle();
+}
 
 //给所有元素绑定click事件
 List.listAddClickEvent = function(){
@@ -414,27 +496,10 @@ List.listAddClickEvent = function(){
 	//console.log(thisList);
 	
 	//给分类绑定事件
-	utility.$delegate(thisList,'span','click',function(){
-		//thisListSpan一定要放在绑定里面，以保证每次绑定的时候加入新加入的类
-		var thisListSpan = utility.qsa('span',utility.qs('.type_list'));
-		//选中事件
-		for(var i=0,len=thisListSpan.length;i<len;i++){
-			thisListSpan[i].className = thisListSpan[i].className.replace("list_item_select","");
-			//console.log('clear!');
-		}
-		this.className += ' list_item_select';
-		List.showAddIcon();
+	utility.$delegate(thisList,'span','click',List.leftClass);
 
-		List.showTodoTitle();
-	})
-
-	//给删除绑定绑定事件
-	utility.$delegate(thisList,'.delete_icon','click',function(){
-		if(confirm("删除操作不可逆，是否要删除该项？")){
-			var delete_class = utility.$parent(event.target,'li');
-			utility.$parent(event.target,'ul').removeChild(delete_class);
-		}
-	});
+	//给左侧栏删除类绑定事件
+	utility.$delegate(thisList,'.delete_icon','click',List.deleteClass);
 
 	//给编辑项中的任务日期加入提示文字，显示当前时间
 		var this_date = utility.date();
@@ -472,6 +537,9 @@ List.listAddClickEvent = function(){
 	utility.$on(utility.qs('.item_all'),'click',List.midHeader);
 	utility.$on(utility.qs('.item_todo'),'click',List.midHeader);
 	utility.$on(utility.qs('.item_done'),'click',List.midHeader);
+
+	//给取消图标绑定事件
+	utility.$on(utility.qs('.todo_cancel'),'click',List.todoCancel);
 }
 
 //发生改变时，中间栏任务标题的显示
@@ -531,13 +599,13 @@ List.listDisplay = function(thisClass,boolean,view){
 		if(view == 'false'){
 			//未完成
 			var temp_todo_view = [];
-			console.log(todos.length);
+			//console.log(todos.length);
 			for(var i=0,len=todos.length;i<len;i++){
 				if(todos[i].complete == 'false'){
 					temp_todo_view.push(todos[i]);
 				}
 			}
-			console.log(temp_todo_view);
+			//console.log(temp_todo_view);
 			todos =temp_todo_view;
 		}else if(view == 'true'){
 			//已完成
@@ -547,7 +615,7 @@ List.listDisplay = function(thisClass,boolean,view){
 					temp_todo_view.push(todos[i]);
 				}
 			}
-			console.log(temp_todo_view);
+			//console.log(temp_todo_view);
 			todos =temp_todo_view;
 		}else{
 			//所有
@@ -602,6 +670,7 @@ List.listDisplay = function(thisClass,boolean,view){
 
 			thisSortDate = todos[i].sortDate.getTime();
 		} else{
+			//加入内容
 			var temTitle = listTitleTempate.replace('"{{title}}"',todos[i].title);
 			temTitle = temTitle.replace('"{{id}}"',todos[i].id);
 			utility.qs(".mid_main_list").innerHTML += temTitle;
@@ -698,10 +767,106 @@ List.showViewTitle = function(view){
 		//已完成
 		List.listDisplay(now_click_class, is_1st_class, 'true') //是否完成
 	}
-	
+}
 
+//左侧类的删除事件
+List.deleteClass = function(){
+		if(confirm("删除操作不可逆，是否要删除该项？")){
+			//获得要删除类的标签
+			var delete_class = utility.$parent(event.target,'li');
+			var delete_class_child = delete_class.nextSibling;
+			//console.log(delete_class_child);
+			//获得要删除类的类名
+			var delete_class_name = utility.qs('span',delete_class).innerHTML;
+			//获取localstorage中的数据
+			var data = JSON.parse(localStorage[window._dbName]);
+			var todos = data.todos;
+			var class_1 = data.class_1;
+			var class_2 = data.class_2;
+			//获得要删除类的类级，一级or二级类
+			if(utility.qs('span',delete_class).className.indexOf('1stClass')>=0){
+				//一级类
+				var delete_class_level = 'class_1';
+			}else{
+				//二级类
+				var delete_class_level = 'class_2';
+			}
+			
+			//删除类标签
+			if(delete_class_level == 'class_1'){
+				//删除类为第一类
+				utility.qs('.type_list_all').removeChild(delete_class);
+				//console.log(delete_class_child.nodeName);
+				if(delete_class_child.nodeName == 'UL'){
+					//当前第一类下有第二类需要删除
+					utility.qs('.type_list_all').removeChild(delete_class_child);
+				}
+				
+			}else{
+				//删除类为第二类
+				utility.$parent(event.target,'ul').removeChild(delete_class);
+			}
+			
 
+			//删除localstorage中todos的相关任务数据	
+			var temp_todos = [];	
+			for(var i=0,len=todos.length;i<len;i++){
+				if(delete_class_level == 'class_1'){
+					//删除类属于第一类
+					//console.log(delete_class_name);
+					if(todos[i].class_1 !== delete_class_name){
+						temp_todos.push(todos[i]);
+					}
+				}else{
+					//删除类属于第二类
+					if(todos[i].class_2 !== delete_class_name){
+						temp_todos.push(todos[i]);
+					}
+				}				
+			}
+			//console.log(temp_todos);
+			data.todos = temp_todos; // 这里不能直接把值给todos，否则data.todos的值没有改变???为啥
+			//console.log(data.todos);
+			//console.log(class_2);
+			//删除localstorage中的class中的相关数据
+			if(delete_class_level == 'class_1'){
+				//删除类属于第一类
+				for(var i=0,len=class_1.length;i<len;i++){
+					if(class_1[i] == delete_class_name){
+						class_1.splice(i,1);
+					}
+				}
+				//写回localstorage
+				localStorage[window._dbName] = JSON.stringify(data);
 
+				//左侧类栏选中分类列表，中间栏显示所有任务
+				List.leftClass('allClass');
+				List.listDisplay();
+			}else{
+				//删除类属于第二类
+				var temp_i;
+				for(var i=0,len=class_2.length;i<len;i++){
+					if(class_2[i] != null){
+						//console.log(i);
+						//console.log(class_2[i]);
+						for(var j=0,len1=class_2[i].length;j<len1;j++){
+							if(class_2[i][j] == delete_class_name){
+								//console.log(i,j);
+								temp_i = i;
+								class_2[i].splice(j,1);
+							}
+						}
+					}		
+				}
+				//写回localstorage
+				localStorage[window._dbName] = JSON.stringify(data);
+
+				//左侧选中父级分类，中间栏显示父级所有任务
+				localStorage[window._dbName] = JSON.stringify(data);
+				List.leftClass(class_1[temp_i]);
+				List.listDisplay(class_1[temp_i],true);
+			}		
+		}
 }
 
 
