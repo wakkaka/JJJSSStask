@@ -657,7 +657,7 @@ List.listDisplay = function(thisClass,boolean,view){
 	for(var i=0,len=todos.length;i<len;i++){
 		var listDateTempate = '<li class="thisDate">"{{date}}"</li>';
 		var listTitleTempate =  '<li class="this_title">'
-						  +			'<span id="_"{{id}}"">"{{title}}"</span>'
+						  +			'<span id="_"{{id}}"" class=""{{compete}}"">"{{title}}"</span>'
 						  +			'<i class="delete_icon_2"></i>'
 						  +     '</li>';
 		if(thisSortDate != todos[i].sortDate.getTime()){	
@@ -666,6 +666,7 @@ List.listDisplay = function(thisClass,boolean,view){
 			//加入内容
 			var temTitle = listTitleTempate.replace('"{{title}}"',todos[i].title);
 			temTitle = temTitle.replace('"{{id}}"',todos[i].id);
+			temTitle = temTitle.replace('"{{compete}}"',todos[i].complete);
 			utility.qs(".mid_main_list").innerHTML += temTitle;
 
 			thisSortDate = todos[i].sortDate.getTime();
@@ -673,6 +674,7 @@ List.listDisplay = function(thisClass,boolean,view){
 			//加入内容
 			var temTitle = listTitleTempate.replace('"{{title}}"',todos[i].title);
 			temTitle = temTitle.replace('"{{id}}"',todos[i].id);
+			temTitle = temTitle.replace('"{{compete}}"',todos[i].complete);
 			utility.qs(".mid_main_list").innerHTML += temTitle;
 		}
 		
