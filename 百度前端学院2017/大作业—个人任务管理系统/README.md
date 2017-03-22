@@ -6,10 +6,12 @@ ife 2015 spring task0003
 ## 运行
 
 在该文件夹下，执行
-<pre><code>
-	$ npm install
-	$ webpack-dev-server
-</code></pre>
+<pre>
+	<code>
+		$ npm install
+		$ webpack-dev-server
+	</code>
+</pre>
 
 在浏览器http://localhost:8080/ 中打开
 
