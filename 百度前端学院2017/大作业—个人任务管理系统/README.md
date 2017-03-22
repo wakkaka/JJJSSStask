@@ -5,7 +5,7 @@ ife 2015 spring task0003
 - - -
 ## 运行
 
-在该文件夹下，执行 </br>
+在该文件夹下，执行
 <pre><code>
 	$ npm install
 	$ webpack-dev-server
