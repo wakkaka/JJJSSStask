@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>某道云笔记</title>
+	<script type="text/javascript" src="bundle.js"></script>
+</head>
+<body>
+	<div class="header">
+		<i class="header_icon"></i>
+		<span>Wakkaka Tools</span>
+	</div>
+	<div class="main">
+		<div class="left">
+			<div class="list_add">
+				<div class="add_list">
+					<i class="add_list_icon"></i>
+					<span>新建分类</span>
+				</div>
+				<div class="add_item">
+					<i class="add_item_icon"></i>
+					<span>新建任务</span>
+				</div>
+			</div>
+			<ul class="type_list">
+				<li>
+					<i class="type_icon"></i>
+					<span class="allItem list_item_select">所有任务</span>
+				</li>
+				<li>
+					<i class="type_icon"></i>
+					<span class="allClass _allClass">分类列表</span>
+				</li>
+				<ul class="type_list_all">
+						<li>
+							<i class="type_file_icon"></i>
+							<span class="1stClass defaultClass 默认分类 _默认分类">默认分类</span>
+						</li><ul class="type_item"></ul>
+				</ul>
+			</ul>
+		</div>
+		<div class="mid">
+			<div class="mid_header">
+				<div>
+					<i class="select_item_all"></i>
+					<span class="item_all mid_header_select">所有</span>
+				</div>
+				<div>
+					<i class="select_item_todo"></i>
+					<span class="item_todo">未完成</span>
+				</div>
+				<div>
+					<i class="select_item_done"></i>
+					<span class="item_done">已完成</span>
+				</div>
+			</div>
+			<div class="mid_main">
+				<ul class="mid_main_list">
+					
+				</ul>
+			</div>
+			<div class="widget-scroller-bar" style="height: 591px; top: 0px; display: none;"></div>
+		</div>
+		<div class="right">
+			<div class="right_header">
+				<div class="todo_title_display">
+					<span>任务标题：</span>
+					<span class="todo_title_span"></span>
+				</div>
+				
+				<div class="todo_title_div" style="display: none;">
+					<span>任务标题：</span>
+					<input type="text" class="todo_title todo_input" placeholder="在此处输入任务标题（少于30字）" maxlength="30" >
+				</div>
+				<i class="todo_done_icon" style="display: none;"></i>
+				<i class="todo_done_icon_done" style="display: none;"></i>
+				<i class="todo_edit_icon" style="display: none;"></i>
+				<div class="todo_save">
+					保存
+				</div>
+				<div class="todo_cancel">
+					取消
+				</div>
+			</div>
+			<div class="right_date">
+				<div class="todo_date_display">
+					<span>任务日期：</span>
+					<span class="todo_date_span"></span>
+				</div>
+				
+				<div class="todo_date_div" style="display: none;">
+					<span>任务日期：</span>
+					<input type="text" class="todo_date todo_input">
+				</div>
+				
+			</div>
+			<div class="right_content">
+				<div class="todo_content_div"></div>
+				<textarea maxlength="1000" class="todo_textarea" placeholder="在此输入任务内容（少于1000字）"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

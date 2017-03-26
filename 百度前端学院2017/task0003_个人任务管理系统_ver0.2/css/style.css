@@ -1,0 +1,436 @@
+*{
+	margin:0;
+	padding: 0;
+	font-family:”微软雅黑”;
+}
+ul,li{
+	list-style: none;
+	cursor: pointer;
+}
+.header{
+	width: 100%;
+	height: 50px;
+	background: #398dee;
+}
+.header_icon{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	width: 26px;
+	height: 26px;
+	background-position: 0 0;
+	left:20px; 
+	top:12px;
+}
+.header span{
+	line-height: 50px;
+	padding-left: 55px;
+	font-size: 23px;
+	color: #fff;
+	display: block;
+}
+.main{/*没有这个的话main下的子元素height:100%就会等于窗体长度，就会出现滚动条*/
+	position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.list_add{
+	height: 40px;
+	line-height: 40px;
+	width: 240px;
+	color: #393939;
+	font-size: 12px;
+	padding: 10px 0;
+	border-bottom: 1px solid #e0e1e5;
+}
+.add_list{
+	position: absolute;
+	left: 50px;
+	cursor: pointer;
+}
+.add_list:hover{
+	color: rgb(118, 176, 243);
+}
+.add_item:hover{
+	color: rgb(118, 176, 243);
+}
+.add_list_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 86.815% 8%;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	left: -30px;
+}
+.add_item{
+	position: absolute;
+	left: 160px;
+	cursor: pointer;
+}
+.add_item_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 100% 72.94832826747721%;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	left: -30px;
+}
+.delete_icon{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 93.9209726443769% 37.38601823708207%;
+	width: 20px;
+	height: 20px;
+	right: 26px;
+	margin-top: -24px;
+	display: none;
+}
+.type_list li:hover {
+	background: rgba(118, 176, 243, 0.3);
+}
+.type_list li:hover .delete_icon{/*这里用来替代鼠标移入移出事件*/
+    display: block;
+}
+.type_list{
+	line-height: 30px;
+	font-size: 12px;
+	color: #393939;
+}
+.type_list span{
+	padding-left:60px; 
+	display: block;
+}
+.type_list_all span{
+	padding-left: 75px;
+	display: block;
+
+}
+.type_item span{
+	padding-left: 90px;
+	display: block;
+}
+.type_icon{
+	margin-top: 4px;/*这里使用top的话图标就会重叠,absolute定位中top，left的基准是最后一次定位的祖先元素*/
+	left: 26px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background:url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 14.76923076923077% 83.38461538461539%;
+}
+.type_file_icon{
+	margin-top: 2px;
+	left: 40px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 59.07692307692308% 83.38461538461539%;
+}
+.type_item_icon{
+	margin-top: 5px;
+	left: 54px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 55.333% 90%;
+}
+.list_item_select{
+	background: #398dee;
+	color: #fff;
+}
+.left{
+	position: absolute;
+	width: 240px;
+	height: 100%;
+	background: #f5f5f5;
+	border-right: 1px solid #e0e1e5;
+}
+
+.mid{
+	left:241px;
+	position: absolute;
+	width: 320px;
+	height: 100%;
+	background: #fff;
+	border-right: 1px solid #e0e1e5;
+}
+.mid_header{
+	height: 60px;
+	border-bottom:1px solid #e0e1e5;
+	position: relative;
+	line-height: 60px;
+}
+.mid_header div{
+	float: left;
+	width: 90px;
+	margin: 2px 0 2px 15px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 12px;
+}
+.true{
+	color: #42be54;
+}
+.item_all, .item_todo, .item_done{
+	cursor: pointer;
+}
+.mid_header div span{
+	margin-left: 10px;
+}
+.mid_header div span:hover{
+	color: rgb(118, 176, 243);
+}
+.mid_header_select{
+	margin-left: 10px;
+	color: rgb(118, 176, 243);
+}
+.select_item_all{
+	top:18px;
+	margin-left:-30px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 80% 65.948%;	
+}
+.select_item_todo{
+	top:21px;
+	margin-left:-25px;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 74.5% 96%;
+}
+.select_item_done{
+	top:21px;
+	margin-left:-25px;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 69.1% 96%;
+}
+.mid_main{
+
+}
+.mid_main ul{
+	height: 100%;
+}
+.mid_main li{
+	top: 0;
+	position: relative;
+    padding: 0 40px;
+    line-height: 52px;
+    border-bottom: 1px solid #e0e1e5;
+    overflow: hidden;
+}
+.thisTitle:hover{
+	background-color: #eaf0fb;	
+}
+.delete_icon_2{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 93.9209726443769% 37.38601823708207%;
+	width: 20px;
+	height: 20px;
+	right: 26px;
+	margin-top: -35px;
+	display: none;
+}
+.this_title:hover  {
+	background-color: #eaf0fb;
+}
+._titleSelect{
+	background-color: #eaf0fb;
+}
+.mid_main_list{
+	overflow: hidden;
+}
+.mid_main_list:hover{
+	overflow-y: scroll;
+}
+.mid_main_list span{
+	display: block;
+	height: 52px;
+/* 	overflow: hidden;
+position: relative;
+overflow: hidden; */
+}
+.mid_main_list li:hover .delete_icon_2{
+	display: block;
+}
+.mid_main {
+	position: absolute;
+    top: 61px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.thisDate{
+	top: -3px;
+	height:5px;
+	line-height: 5px !important;
+    position: relative;
+    padding: 15px 25px !important;
+    border-bottom: 1px solid #e0e1e5;
+    overflow: hidden;
+    cursor: default;
+    background: #f5f5f5;
+}
+.right{
+	position: absolute;
+	left:560px;
+	height: 100%;
+	right: 0;
+	min-width: 280px;
+}
+.right_header{
+	height: 60px;
+	border-bottom: 1px solid #e0e1e5;
+	line-height: 60px;
+	padding: 0 20px;
+	font-weight: bold;
+	font-size: 18px;
+}
+.todo_title_display{
+	display: inline;
+}
+.todo_input{
+	width: 300px;
+	line-height: 22px;
+	height: 22px;
+	background-color: transparent;
+	border:0 none;
+	font-size: 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	outline:none;/*有了这条input去掉边框后的蓝色部分就消失了*/
+}
+.todo_textarea{
+	width: 100%;
+	height: 100%;
+	border: 0 none;
+	outline: none;
+	background: transparent;
+	font-size: 14px;
+	display: none;
+}
+.todo_done_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 80.1% 96%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 65px;
+	cursor: pointer;
+}
+.todo_done_icon_done{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 69.1% 96%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 65px;
+	cursor: pointer;
+}
+.todo_edit_icon{
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 88% 45%;
+	position: absolute;
+	width: 22px;
+	height: 22px;
+	top: 21px;
+	right: 20px; 
+	cursor: pointer;
+}
+.todo_save{
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	color: #82B6F4;
+	font-size: 11px;
+	text-align: center;
+	border: 1px solid #e2e2e2;
+	border-radius: 6px;
+	cursor: pointer;
+	background-color: #fff;
+	top: 15px;
+	right: 20px;
+	display: none;
+}
+.todo_cancel{
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	color: #82B6F4;
+	font-size: 11px;
+	text-align: center;
+	border: 1px solid #e2e2e2;
+	border-radius: 6px;
+	cursor: pointer;
+	background-color: #fff;
+	top: 15px;
+	right: 125px;
+	display: none;
+}
+.right_date{
+	height: 50px;
+	border-bottom: 1px solid #e0e1e5;
+	line-height: 50px;
+	padding: 0 20px;
+	font-size: 18px;
+}
+.right_content{
+	position: absolute;
+	top: 112px;
+	bottom:0;
+	left: 0;
+	right: 0;
+	border-bottom: 1px solid #e0e1e5;
+	line-height: 50px;
+	padding: 25px 25px;
+}
+.right_content div{
+	position: absolute;
+	top: 8px;
+	font-size: 14px;
+}
+
+/*滚动条整体部分*/
+::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+    background: transparent;
+    border-radius: 5px;
+}
+/*滚动条的轨道的两端按钮，允许通过点击微调小方块的位置*/
+::-webkit-scrollbar-button{
+    display: none;
+}
+/*滚动条里面的小方块，能向上向下移动*/
+::-webkit-scrollbar-thumb{
+    width: 10px;
+    min-height: 15px;
+    background: rgba(118, 176, 243, 0.3);
+    border-radius: 0;
+    margin-right: 1px;
+}
+/*滚动条的轨道*/
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+/*内层轨道*/
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}

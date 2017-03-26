@@ -149,7 +149,7 @@ define(['widget','jquery','jqueryUI'],function(widget,$,$UI){
 			$.extend(this.cfg,cfg,{winType:"prompt"});
 			this.render();
 			this._promptInput.focus();//输入框获得焦点
-			this._promptInput.select();//输入框文本被选中解放后靠大家加油       天哪天哪啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊加油机放大镜看大神都分开交水电费数据考虑到福建省 
+			this._promptInput.select();//输入框文本被选中
 			return this;
 		},
 		common : function(cfg){
