@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>为数组添加方法（求和，最大值）</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	Array.prototype.sum = function(){
+		for(var sum=0,i=0,len=this.length;i<len;i++){
+			sum+=parseInt(this[i]);
+		}
+
+		return sum;
+	}
+
+	Array.prototype.maxima = function(){
+		for(var i=0,max_value=this[0],len=this.length;i<len;i++){//设置max_value初始值为要比较数组的第一位可以解决原始方法中不能比较负数的问题
+			(parseInt(this[i]) > max_value) && (max_value = this[i]);
+		}
+
+		return max_value;
+	}
+
+	var arr = [-1,-22,-35,-4,-7,-14,-79,-2225,-565];
+	console.log(arr.join(' + ') + ' = ' + arr.sum());
+	console.log(arr.join(' | ') + '中，最大的的为：' + arr.maxima());
+</script>
+</html>
