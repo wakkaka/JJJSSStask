@@ -22,7 +22,7 @@
 
 	//获取tagName
 	var $$ = function (tagName, oParent) {return (oParent || document).getElementsByTagName(tagName)};
-
+;
 	//自动播放对象
 	var AutoPlay = function (id) {this.initialize(id)};
 
@@ -100,7 +100,7 @@
 		//轮播运动
 		doMove: function (iTarget)
 		{
-			console.log(this);
+			//console.log(this);
 			var oThis = this;
 			clearInterval(oThis.timer);
 			oThis.timer = setInterval(function () 

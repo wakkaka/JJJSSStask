@@ -1,0 +1,64 @@
+*{
+	margin:0;
+	padding: 0;
+}
+
+ul{
+	list-style:none;
+}
+
+body{
+	background-color: #ccc;
+}
+
+#box{
+	font:12px/20px Arial;
+	background-color: #ccc;
+	position: relative;
+	width: 492px;
+	height: 172px;
+	background:#fff;
+	border-radius: 5px;
+	border:8px solid #fff;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.list{
+	position: relative;
+	overflow: hidden;
+	width: 490px;
+	height: 170px;
+}
+.list ul{
+	position: absolute;
+	width: 2450px;/*这里设置宽度，才能完成横向轮播*/
+	top: 0;
+	left: 0;
+}
+.list li{
+	width: 490px;
+	height: 170px;
+	overflow: hidden;
+}
+.count{
+	position: absolute;
+	right: 0;
+	bottom: 5px;
+}
+.count li{
+	color:#FFF;
+	float: left;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	margin-right: 5px;
+	overflow: hidden;
+	background-color: #f90;
+	text-align: center;
+	border-radius: 10px;
+	opacity:0.7;
+}
+.count .select{
+	background-color: #f60;
+}
