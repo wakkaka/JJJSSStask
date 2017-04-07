@@ -118,11 +118,11 @@ PhotoWall.prototype = {
 		var eventTarget = document.getElementById(this.oName);
 		eventTarget.addEventListener('dblclick',function()
 		{
-			console.log(event.target);
+			//console.log(event.target);
 			if(event.target && event.target.className == 'info')
 			{
-				var mask = '<div class="mask"></div>';
-				document.body.innerHTML += mask;
+				var mask = $$('mask');
+				mask.style= "display: block";
 				that.showImg(event);
 			}
 			
@@ -312,33 +312,35 @@ PhotoWall.prototype = {
 		var that = this;
 		//console.log(e.target);
 		//console.log(event.target.parentNode.getElementsByTagName('img')[0]);
-		var showDiv = document.createElement('div');
-		showDiv.className = 'showDiv';
-		var img = e.target.parentNode.getElementsByTagName('img')[0].cloneNode(true);
-		var close = '<span class = "_close" id="_close">X</span>';	
-		//console.log(img);
-		showDiv.innerHTML = close;
-		showDiv.appendChild(img);
-		//console.log(showDiv);
-		document.body.appendChild(showDiv);
+		var showDiv = $$('showDiv')[0];
 
-		var close = document.getElementById('_close');
-		//console.log(close);
-		close.onclick = function(){
+		console.log(showDiv);
+
+		var imgNode = $('img',showDiv)[0];
+		var img = e.target.parentNode.getElementsByTagName('img')[0].src;
+		var closeNode = $$('_close')[0];
+		//console.log(closeNode);
+		//console.log(img);
+		imgNode.src = img;
+		showDiv.style ='display:block';
+		$$('mask')[0].style = 'display:block';
+		closeNode.onclick = function(){
 			that.removeMask();
 		}
 	},
 
 	removeMask : function()
 	{
+		var showDiv = $$('showDiv')[0];
+		var maskNode = $$('mask')[0];
 		var that = this;
 		this.oParent = document.getElementById(this.oName);
 
-		document.body.removeChild($$('showDiv')[0]);
-		document.body.removeChild($$('mask')[0]);
+		showDiv.style = 'display:none';
+		maskNode.style = 'display:none';
 
 		this.oLi = $('li',this.oParent);//删除节点后，原来找到的this.oLi不能使用了。。。得重新绑定事件
-		this.oBtn = $('a',this.oParent);
+		this.oBtn = $('a',this.oParent)[0];
 		//console.log(this.oLi);
 
 		this.oBtn.onclick = function()
