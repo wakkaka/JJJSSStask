@@ -41,7 +41,7 @@ AutoPlay.prototype = {
 		}
 		
 		this.oCount.className = 'count';
-		console.log(tem);
+		//console.log(tem);
 		this.oCount.innerHTML = tem.join('');
 		this.oBox.appendChild(this.oCount);
 	},
