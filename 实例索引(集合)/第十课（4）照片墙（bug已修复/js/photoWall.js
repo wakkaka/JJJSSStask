@@ -116,6 +116,7 @@ PhotoWall.prototype = {
 	{
 		var that = this;
 		var eventTarget = document.getElementById(this.oName);
+
 		eventTarget.addEventListener('dblclick',function()
 		{
 			//console.log(event.target);
@@ -181,9 +182,17 @@ PhotoWall.prototype = {
 						//console.log(oNear);
 						//console.log(handle.index);
 						//交换拖拽li和最近li的index，方便更换确定oPos
-						handle.index = [handle.index, oNear.index];
+						
+						/*handle.index = [handle.index, oNear.index];
 						oNear.index = handle.index[0];
-						handle.index = handle.index[1];
+						handle.index = handle.index[1];*/
+
+						//交换后，直接改变保存li位置的数组oPos，而不是交换两者li的index，以便查看大图后的交换成功进行			
+						var posHandle = that.oPos[handle.index];
+						var posNear = that.oPos[oNear.index];
+						that.oPos.splice(handle.index,1,posNear);
+						that.oPos.splice(oNear.index,1,posHandle);
+
 						oNear.style.zIndex = that.oIndex++;
 						//console.log(handle.index);
 						that.doMove(handle, that.oPos[handle.index]);
@@ -314,7 +323,7 @@ PhotoWall.prototype = {
 		//console.log(event.target.parentNode.getElementsByTagName('img')[0]);
 		var showDiv = $$('showDiv')[0];
 
-		console.log(showDiv);
+		//console.log(showDiv);
 
 		var imgNode = $('img',showDiv)[0];
 		var img = e.target.parentNode.getElementsByTagName('img')[0].src;
@@ -340,19 +349,20 @@ PhotoWall.prototype = {
 		maskNode.style = 'display:none';
 
 		this.oLi = $('li',this.oParent);//删除节点后，原来找到的this.oLi不能使用了。。。得重新绑定事件
+		//console.log(this.oLi);但是重新查找到的ul中li的排列顺序仍然没有变，需要有一个数组专门存储li的顺序
 		this.oBtn = $('a',this.oParent)[0];
 		//console.log(this.oLi);
 
-		this.oBtn.onclick = function()
-		{
-			that.randomOrder();
-		}
-		
 		for(var i=0,len=this.oLi.length;i<len;i++)
 		{
 			this.oLi[i].index = i;
 		}
 
-		this.drag();
+		this.oBtn.onclick = function()
+		{
+			that.randomOrder();
+		}
+				
+		console.log(this.oPos,this.oLi);
 	}
 }
