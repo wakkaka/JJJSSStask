@@ -5,6 +5,10 @@
 }
 ul,li{
 	list-style: none;
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
 }
 .header{
 	width: 100%;
@@ -145,9 +149,7 @@ ul,li{
 	text-align: center;
 	font-size: 12px;
 }
-.true{
-	color: #42be54;
-}
+
 .item_all, .item_todo, .item_done{
 	cursor: pointer;
 }
@@ -267,7 +269,7 @@ overflow: hidden; */
 	font-size: 14px;
 	resize : none;
 }
-.todo_done_icon{
+.todo_icon{
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 80.1% 96%;
 	position: absolute;
@@ -277,7 +279,7 @@ overflow: hidden; */
 	right: 65px;
 	cursor: pointer;
 }
-.todo_done_icon_done{
+.done_icon{
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 69.1% 96%;
 	position: absolute;
@@ -287,16 +289,7 @@ overflow: hidden; */
 	right: 65px;
 	cursor: pointer;
 }
-.todo_edit_icon{
-	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
-	background-position: 88% 45%;
-	position: absolute;
-	width: 22px;
-	height: 22px;
-	top: 21px;
-	right: 20px; 
-	cursor: pointer;
-}
+
 .todo_save{
 	width: 80px;
 	height: 30px;
@@ -312,28 +305,16 @@ overflow: hidden; */
 	top: 15px;
 	right: 110px;
 }
-.todo_cancel{
-	width: 80px;
-	height: 30px;
-	line-height: 30px;
-	position: absolute;
-	color: #82B6F4;
-	font-size: 11px;
-	text-align: center;
-	border: 1px solid #e2e2e2;
-	border-radius: 6px;
-	cursor: pointer;
-	background-color: #fff;
-	top: 15px;
-	right: 125px;
-	display: none;
-}
 .right_date{
 	height: 50px;
 	border-bottom: 1px solid #e0e1e5;
 	line-height: 50px;
 	padding: 0 20px;
 	font-size: 18px;
+	font-weight: bold;
+}
+.todo_date_span{
+	font-weight: normal;
 }
 .right_content{
 	position: absolute;

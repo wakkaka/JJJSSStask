@@ -12,8 +12,10 @@ class File {
 		this.$container = $(opt.container)
 		this.fileId = opt.fileId
 		this.folderId = opt.folderId
-		this.complete = opt.complete || 'false' // 任务完成标志
+		this.complete = opt.complete || false // 任务完成标志
 		this.title = opt.title || '' // 标题
+		this.simpleDate = opt.simpleDate || ''	//排序用时间
+		this.integralDate = opt.integralDate || '' //排序用时间
 		this.createdDate = opt.createdDate || this.getCurrentDate() //创建时间
 		this.content = opt.content || '' // 内容
 		this.outline = opt.outline || '' // 大纲
@@ -55,7 +57,10 @@ class File {
 	{
 		this.title = data.title || this.title
 		this.content = data.content || this.content
+		this.complete = (data.complete != undefined) ? data.complete : this.complete
 		this.createdDate = this.getCurrentDate()
+
+		console.log(this.complete)
 	}
 
 	getOutline()
@@ -81,9 +86,10 @@ class File {
 		this.integralDate = year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds
 
 		return year + '年 ' + month + '月 ' + 
-		day + '日 ' + '  ' + hour + ':' +
-		minutes + ':' + seconds ;
+			   day + '日 ' + '  ' + hour + ':' +
+			   minutes + ':' + seconds ;
 	}
+
 }
 
 export default File

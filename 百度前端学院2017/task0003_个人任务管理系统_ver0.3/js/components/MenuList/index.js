@@ -2,7 +2,7 @@ import Folder from '../Folder/index.js'
 import $ from 'jquery'
 import pubsub from '../../utlis/pubsub'
 
-let guid =0
+
 
 class MenuList {
 	constructor(opt) 
@@ -11,6 +11,7 @@ class MenuList {
 		this.$addFileBtn = $(opt.addFileBtn)
 		this.$exportBtn = $(opt.exportBtn) || null
 		this.$currentTarget = $('[data-folderId="-1"]')[0]
+		this.guid =0
 
 		this.folders = []
 
@@ -50,11 +51,27 @@ class MenuList {
 				//New File
 				let fileId = folderInstance.addFile().getLatestFile().fileId
 
+				pubsub.publish('updateCurrentFile',{folderId: folderId, fileId: fileId})
 				this.renderSubMenu( folderInstance )
-
-				/*//为新建的 file 加入 选中状态
-				$('.mid_main_list').find('[data-fileid="' + fileId + '"]').addClass('_titleSelect')*/
 			}
+		})
+
+		// 删除 file 
+		$('.mid_main_list').on('click', '.delete_icon_2', (e) => {
+			 e.stopPropagation()//阻止冒泡很关键。要不然就会触发两个事件，一个是本事件，一个是单击file的事件
+
+			let $currentFile = $(e.currentTarget).parent('li')
+			let folderId = $currentFile.data('folderid')
+			let fileId = $currentFile.data('fileid')
+			let folderInstance = this.getFolderById( folderId )
+
+			if(folderInstance) {
+				folderInstance.deleteFile( fileId )
+				pubsub.publish('updateCurrentFile',{folderId: folderId, fileId: fileId})
+				this.renderSubMenu( folderInstance )
+			}
+
+			
 		})
 
 
@@ -66,6 +83,7 @@ class MenuList {
 		let files = folderInstance.getFilesHtml()
 
 		$('.mid_main_list').html( files )
+
 	}
 
 	addNewFolder() 
@@ -81,7 +99,7 @@ class MenuList {
 
 		if(text) {
 			folder = new Folder({
-				folderId: 'folder-' + guid++,
+				folderId: 'folder-' + this.guid++,
 				container: this.$container,
 				title: text,
 				folderlevel: level
@@ -129,11 +147,11 @@ class MenuList {
 	updateCurrentFile(folderId, fileId, data) 
 	{
 		let currentFolder = this.getFolderById(folderId)
-		let currentFile = this.getCurrentEditFile(folderId,fileId)
+		let currentFile = this.getCurrentEditFile(folderId, fileId)
 
 		if(currentFile) {
 			currentFile.setContent(data)
-			pubsub.publish('editCurrentFile',{folderId, fileId})
+			pubsub.publish('editCurrentFile', {folderId, fileId})
 		}
 
 		this.renderSubMenu( currentFolder )

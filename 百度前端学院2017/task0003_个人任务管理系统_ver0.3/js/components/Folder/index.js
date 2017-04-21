@@ -61,6 +61,17 @@ class Folder {
 		return this
 	}
 
+	// 删除一个File
+	deleteFile(fileId)
+	{
+		for(let i=0;i<this.subItems.length;i++) {
+			if(this.subItems[i].fileId == fileId) {
+				this.subItems.splice(i,1)
+			}
+		}
+		return this
+	}
+
 	// 取得该分类下的所有Files
 	getData()
 	{

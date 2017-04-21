@@ -4,7 +4,7 @@
 	<title>test</title>
 </head>
 <body>
-<ul actionType="test">
+<ul actionType="test" class='what_you_say'>
 	<li>1</li>
 	<li>2</li>
 	<li>
@@ -43,6 +43,11 @@
 	console.log($('[actionType="test"]')[0])
 
 	console.log($('span').html('dddd'))//使用val()不能改变span 的值
+
+	var tmp = $('.what_you_say').hasClass('what_you_say')
+	console.log(tmp)
+
+	console.log(new Boolean(undefined).valueOf())
 
 </script>
 </html>
