@@ -4,10 +4,23 @@
 	<title>test</title>
 </head>
 <body>
+<ul actionType="test">
+	<li>1</li>
+	<li>2</li>
+	<li>
+		3
+		<ul>
+			<li>1</li>
+			<li>2</li>
+		</ul>
+	</li>
+</ul>
 
+<span>123123</span>
 </body>
+<script type="text/javascript" src="./jquery-3.1.1.js"></script>
 <script type="text/javascript">
-	var a = {
+	/*var a = {
 		name:'wakkaka',
 		age:16
 	}
@@ -15,6 +28,21 @@
 	console.log(typeof(a),typeof(b));
 
 	var c = true;
-	console.log(c == true);
+	console.log(c == true);*/
+	/*var a = [];
+	for (var i = 0; i < 10; i++) {
+	  a[i] = function () {
+	    console.log(i);
+	  };
+	}
+	console.log(a[0])
+	a[6]();*/
+	test = [{date:"2017-3-12 12:30:02"},{date:"2017-3-12 12:30:02"},{date:"2017-3-15 12:30:02"},{date:"2017-3-5 12:30:02"}];
+	console.log(new Date(test[0].date.replace(/-/g,'/')));
+
+	console.log($('[actionType="test"]')[0])
+
+	console.log($('span').html('dddd'))//使用val()不能改变span 的值
+
 </script>
 </html>

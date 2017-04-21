@@ -1,0 +1,38 @@
+.m-folder span{
+	display: block;
+}
+
+.level-1-icon{
+	margin-top: 2px;
+	left: 40px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 59.07692307692308% 83.38461538461539%;
+}
+.level-2-icon{
+	margin-top: 5px;
+	left: 54px;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 55.333% 90%;
+}
+
+.list_item_select{
+	background: #398dee;
+	color: #fff;
+}
+
+.delete_icon{
+	position: absolute;
+	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
+	background-position: 93.9209726443769% 37.38601823708207%;
+	width: 20px;
+	height: 20px;
+	right: 26px;
+	margin-top: -24px;
+	display: none;
+}

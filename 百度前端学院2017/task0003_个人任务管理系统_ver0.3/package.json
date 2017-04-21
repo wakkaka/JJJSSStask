@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server",
+    "build": "./node_modules/.bin/webpack -p",
+    "test": "./node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "css-loader": "^0.27.2",
+    "mustache": "^2.3.0",
+    "mustache-loader": "^0.4.1",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
