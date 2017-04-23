@@ -139,3 +139,16 @@ $('[actionType="allfile.clk"]').on('click', (e) => {
 	$('.mid_main_list').html( data )
 })
 
+//导出数据
+$(".export").on('click', (e) => {
+	//
+	console.log(JSON.parse(localStorage[window._dbName]))
+	alert("成功导出数据")
+})
+
+//导入数据
+$('.import').on('click', (e) => {
+	//
+	alert('导入成功')
+})
+

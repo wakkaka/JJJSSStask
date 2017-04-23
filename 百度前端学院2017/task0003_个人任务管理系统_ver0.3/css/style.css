@@ -24,6 +24,30 @@ ul,li{
 	left:20px; 
 	top:12px;
 }
+.export {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 15px;
+	height: 50px;
+	color: #fff;
+	font-size: 17px;
+	line-height: 50px;
+	font-weight: normal;
+	cursor: pointer;
+}
+.import {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 65px;
+	height: 50px;
+	color: #fff;
+	font-size: 17px;
+	line-height: 50px;
+	font-weight: normal;
+	cursor: pointer;
+}
 .header span{
 	line-height: 50px;
 	padding-left: 55px;
@@ -147,7 +171,6 @@ ul,li{
 	text-align: center;
 	font-size: 12px;
 }
-
 .item_all, .item_todo, .item_done{
 	cursor: pointer;
 }
