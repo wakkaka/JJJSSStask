@@ -88,9 +88,7 @@ ul,li{
 .type_list li:hover {
 	background: rgba(118, 176, 243, 0.3);
 }
-.type_list li:hover .delete_icon{/*这里用来替代鼠标移入移出事件*/
-    display: block;
-}
+
 .type_list{
 	line-height: 30px;
 	font-size: 12px;

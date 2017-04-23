@@ -36,10 +36,11 @@ let content = new Content({
 })
 
 //导入已有数据
-if(JSON.parse(localStorage[window._dbName])) 
+if(JSON.parse(localStorage[window._dbName]) != '' && JSON.parse(localStorage[window._dbName]) != null) 
 {
 	let data = JSON.parse(localStorage[window._dbName])
 	let folders = []
+	let lastFolderId = ''
 
 	for(let i=0;i<data.length;i++) 
 	{
@@ -73,7 +74,8 @@ if(JSON.parse(localStorage[window._dbName]))
 		folders.push(folder)
 	}
 	menuList.folders = folders
-	menuList.guid = data.length
+	lastFolderId = data[data.length - 1].folderId
+	menuList.guid = parseInt(lastFolderId.substring( lastFolderId.indexOf('-') + 1 )) + 1
 }
 
 //编辑当前 file
@@ -98,7 +100,7 @@ function updateCurrentFile(data)
 {
 	let folderId = (currentFolderAndFile != null) ? currentFolderAndFile.folderId : data.folderId
 	let fileId = (currentFolderAndFile != null) ? currentFolderAndFile.fileId : data.fileId
-	
+
 	menuList.updateCurrentFile( folderId, fileId, data )
 	Store.update(menuList.folders)
 }
@@ -111,15 +113,29 @@ $('.add_list').on('click', (e) => {
 	Store.update(menuList.folders)
 })
 
+//删除文件夹
+$('.type_list_all').on('click', '.delete_icon', (e) => {
+	e.stopPropagation()
+	let $currentTarget = $(e.currentTarget).parent('li')
+	let folderId = $currentTarget.data('folderid')
+
+	if(confirm("确定要删除该文件夹？")) {
+		menuList.deleteFolder( folderId )
+		Store.update(menuList.folders)
+		
+	}
+	
+})
+
 // 点击 所有任务
 $('[actionType="allfile.clk"]').on('click', (e) => {
+	let data = menuList.getFilesHtml()
 	let $currentTarget = $(e.currentTarget)
-	let data = menuList.getData()
+
 	e.stopPropagation()
 
 	$('.left').find('.list_item_select').removeClass('list_item_select')
 	$currentTarget.find('span').addClass('list_item_select')
-
-	console.log(data)
+	$('.mid_main_list').html( data )
 })
 

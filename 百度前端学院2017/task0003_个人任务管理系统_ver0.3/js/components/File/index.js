@@ -50,7 +50,7 @@ class File {
 			folerId: this.folerId,
 			title: this.title,
 			date: this.createdDate,
-			content: this.content
+			content: this.content,
 			outline: this.getOutline()
 		}
 	}
@@ -61,8 +61,6 @@ class File {
 		this.content = data.content || this.content
 		this.complete = (data.complete != undefined) ? data.complete : this.complete
 		this.createdDate = this.getCurrentDate()
-
-		console.log(this.complete)
 	}
 
 	getOutline()

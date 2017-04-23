@@ -37,7 +37,7 @@ class Folder {
 		})
 
 		this.$element = $(html)
-
+		this.element = html
 		this.$container.append( this.$element )
 
 	}
@@ -79,7 +79,7 @@ class Folder {
 			title: this.title,
 			subItems: [] // 存放该分类下的Files
 		}
-
+	
 		for(let i = 0; i<this.subItems.length;i++) {
 			this.subItems[i] && data.subItems.push( this.subItems[i].getData() )
 		}
@@ -87,37 +87,38 @@ class Folder {
 		return data
 	}
 
-	getFilesHtml()
+	getFilesHtml( subItem )
 	{
 		let str = ''
-		let len = this.subItems.length
+		let subItems = subItem || this.subItems
+		let len = subItems.length
 
 		//subItems中的 file 按时间 从大到小 排序
 		for(let i=0;i<len;i++) {
-			this.subItems[i].sortDate_tpl = new Date(this.subItems[i].integralDate.replace(/-/g,'/'))
-			this.subItems[i].sortDate = new Date(this.subItems[i].simpleDate.replace(/-/g,'/'))
+			subItems[i].sortDate_tpl = new Date(subItems[i].integralDate.replace(/-/g,'/'))
+			subItems[i].sortDate = new Date(subItems[i].simpleDate.replace(/-/g,'/'))
 		}
-		this.subItems.sort( (a,b)  => {
+		subItems.sort( (a,b)  => {
 			return b.sortDate_tpl - a.sortDate_tpl;
 		})
 
 		//找出不重复的时间标题，对 subItems 分类 并加入时间分类
 		let thisSortDate;
 
-		for(let i=0,len=this.subItems.length;i<len;i++) {
+		for(let i=0, len=subItems.length;i<len;i++) {
 
 			let dateTag = '<li class="thisDate">"{{date}}"</li>'
-			let fileTpl = this.subItems[i].genHtml()
+			let fileTpl = subItems[i].genHtml()
 
-			if(thisSortDate != this.subItems[i].sortDate.getTime()) {
+			if(thisSortDate != subItems[i].sortDate.getTime()) {
 
 				//加入新的时间分类标签
-				str += dateTag.replace('"{{date}}"',this.subItems[i].simpleDate)
+				str += dateTag.replace('"{{date}}"', subItems[i].simpleDate)
 
 				//加入内容
 				str += fileTpl
 
-				thisSortDate = this.subItems[i].sortDate.getTime();
+				thisSortDate = subItems[i].sortDate.getTime();
 
 			} else {
 				//加入内容

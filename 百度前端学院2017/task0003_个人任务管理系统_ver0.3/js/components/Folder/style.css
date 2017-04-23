@@ -36,3 +36,6 @@
 	margin-top: -24px;
 	display: none;
 }
+.type_list_all li:hover .delete_icon{/*这里用来替代鼠标移入移出事件*/
+    display: block;
+}
