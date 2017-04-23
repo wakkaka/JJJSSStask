@@ -190,9 +190,6 @@ ul,li{
 	background: url("https://shared-https.ydstatic.com/ynote/ydoc/e1e06b7a.sprite.svg") no-repeat;
 	background-position: 69.1% 96%;
 }
-.mid_main{
-
-}
 .mid_main ul{
 	height: 100%;
 }
@@ -204,6 +201,7 @@ ul,li{
     border-bottom: 1px solid #e0e1e5;
     overflow: hidden;
 }
+
 .thisTitle:hover{
 	background-color: #eaf0fb;	
 }

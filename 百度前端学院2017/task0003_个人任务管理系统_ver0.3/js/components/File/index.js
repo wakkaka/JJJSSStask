@@ -18,7 +18,7 @@ class File {
 		this.integralDate = opt.integralDate || '' //排序用时间
 		this.createdDate = opt.createdDate || this.getCurrentDate() //创建时间
 		this.content = opt.content || '' // 内容
-		this.outline = opt.outline || '' // 大纲
+		this.outline = opt.outline || this.getOutline() // 大纲
 
 		if(!this.fileId){
 			throw new Error('File 需要一个唯一标识 id')
@@ -34,7 +34,8 @@ class File {
 			fileId: this.fileId,
 			folderId: this.folderId,
 			complete: this.complete,
-			title: this.title
+			title: this.title,
+			outline: this.getOutline()
 		})
 
 		this.$element = $(html)
@@ -50,6 +51,7 @@ class File {
 			title: this.title,
 			date: this.createdDate,
 			content: this.content
+			outline: this.getOutline()
 		}
 	}
 
@@ -67,7 +69,9 @@ class File {
 	{
 		if(this.content){
 
-			return this.content.substring(0,20)
+			return this.content.substring(0,17)
+		} else {
+			return ''
 		}
 	}
 

@@ -23,7 +23,7 @@
 	width: 20px;
 	height: 20px;
 	right: 26px;
-	margin-top: -35px;
+	margin-top: -50px;
 	display: none;
 }
 ._titleSelect{
@@ -31,4 +31,14 @@
 }
 .true{
 	color: #42be54;
+}
+.outline {
+	display: block;
+	height: 20px !important;
+	line-height: 20px;
+	color: #82828c;
+	margin-top: -10px;
+	padding-bottom: 16px;
+	font-size: 12px;
+
 }
