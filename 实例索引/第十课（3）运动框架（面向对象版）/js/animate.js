@@ -32,7 +32,6 @@ Animate.prototype = {
 		var bComplete = true;//判断当前一个运动是否已经达到目标位置
 		for(var p in opt){
 			var iCur = (p == 'opacity') ? parseInt(this.css(p).toFixed(2)*100) : this.css(p);
-			console.log(p,iCur);
 			var iSpeed = (opt[p] - iCur)/5;
 			iSpeed = iSpeed>0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
 

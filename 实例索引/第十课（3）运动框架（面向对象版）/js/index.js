@@ -25,7 +25,6 @@ window.onload = function(){
 	oInpute.onclick = function(){
 		var that = this;
 		function begin(){
-			console.log(i);
 			iFlag ? i++ : i--;
 			var animate = new Animate(oSpan, iAction[i], begin);
 			if(i == iAction.length || i<0){

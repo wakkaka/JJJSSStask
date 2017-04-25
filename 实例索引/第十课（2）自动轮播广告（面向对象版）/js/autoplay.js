@@ -5,7 +5,6 @@ var AutoPlay = function(id){
 AutoPlay.prototype = {
 	//初始化一个轮播组件
 	initialize : function(info){
-		console.log(info.id);
 		var that = this;
 		this.oBox = $(info.id);
 
@@ -20,7 +19,9 @@ AutoPlay.prototype = {
 		this.oNow = 0;
 	
 		this.createBtn();
+
 		this.oBtn = $$('li',this.oCount);
+
 		this.toggle();
 
 		this.autoTimer = setInterval(function(){
@@ -55,7 +56,6 @@ AutoPlay.prototype = {
 		//console.log(this.oImg[0].offsetHeight);
 		var v_target = -(this.oImg[0].offsetHeight * this.oNow);
 		var h_target = -(this.oImg[0].offsetWidth * this.oNow);
-		console.log(h_target);
 		this.doMove({v_target:v_target,h_target:h_target});
 	},
 
@@ -76,7 +76,6 @@ AutoPlay.prototype = {
 					this.oLi[i].style = "float:left;"
 				}
 				this.timer = setInterval(function(){
-				console.log(that.oUl.offsetLeft);
 				//console.log(this);//window
 				var iSpeed = (target.h_target - that.oUl.offsetLeft)/7;
 				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
@@ -85,7 +84,6 @@ AutoPlay.prototype = {
 			}else{
 				//纵向轮播
 				this.timer = setInterval(function(){
-				console.log(that.oUl.offsetTop);
 				//console.log(this);//window
 				var iSpeed = (target.v_target - that.oUl.offsetTop)/5;
 				iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);

@@ -19,6 +19,7 @@ var getPos = function(obj)
 {
 	var iTop = obj.offsetTop;
 	var iLeft = obj.offsetLeft;
+	console.log(iTop, iLeft)
 	//console.log(obj.offsetParent.offsetTop);
 	//此循环目前无实际意义
 	while(obj.offsetParent){
@@ -106,7 +107,6 @@ PhotoWall.prototype = {
 		for(var i=0,len=this.oLi.length;i<len;i++){
 			this.oLi[i].style.position = 'absolute';
 			this.oLi[i].style.margin = '0';
-			//绑定拖拽事件
 			this.oLi[i].style.cursor = 'move'
 		}	
 	},

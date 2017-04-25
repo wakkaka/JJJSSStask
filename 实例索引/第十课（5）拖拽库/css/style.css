@@ -1,0 +1,28 @@
+div,h2,p {
+	margin: 0;
+	padding: 0;
+}
+.tools {
+	margin-bottom: 10px;
+}
+.tools input {
+	padding: 0 6px;
+}
+.box {
+	width: 100px;
+	height: 100px;
+	border: 1px solid #f60;
+	background-color: #fef4eb;
+	padding: 5px;
+	position: absolute;
+	top: 112px;
+	left: 58px;
+	-webkit-user-select: none;
+}
+
+.box h2 {
+	height: 25px;
+	background-color: #f60;
+	cursor: move;
+}
+
