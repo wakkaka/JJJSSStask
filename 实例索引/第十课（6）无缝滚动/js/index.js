@@ -1,3 +1,7 @@
 import '../css/style.css'
-import './roll.js'
+import Roll from './roll.js'
+
+window.onload = function() {
+	new Roll('box')
+}
 

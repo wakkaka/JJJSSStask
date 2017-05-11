@@ -1,0 +1,76 @@
+body,div,ul,li {
+	margin:0;
+	padding:0;
+}
+
+body{
+	background:#052D01;
+	font:12px/1.5 arial;
+}
+
+#box {
+	position: absolute;
+	width: 210px;
+	height: 700px;
+	border: 1px solid #5E8743;
+	margin:20px;
+}
+
+#box div {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 160px;
+	height: 570px;
+	margin:-285px 0 0 -80px;
+	overflow: hidden;
+}
+
+.up, .down {
+	position: absolute;
+	left: 50%;
+	width:48px;
+	height: 48px;
+	z-index: 10;
+	cursor: pointer;
+	overflow: hidden;
+	margin-left: -24px;
+	background:url(../img/arrow.jpg) no-repeat;
+}
+
+.up {
+	top:10px;
+	background-position: 0 0;
+}
+
+.down {
+	bottom: 10px;
+	background-position: 0 bottom;
+}
+
+#box ul{
+	position: absolute;
+	width: 160px;
+}
+
+#box li {
+	width: 160px;
+	height: 190px;
+	list-style: none;
+	text-align: center;
+}
+
+#box a {
+	color: #fff;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+#box img {
+	width: 156px;
+	height: 156px;
+	display: block;
+	margin-bottom: 5px;
+	border: 2px solid #ccc;
+}
+
