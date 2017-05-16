@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>单例模式</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var Singleton = function(name) {
+			this.name = name
+		}
+
+		Singleton.prototype.getName = function() {
+			alert(this.name)
+		}
+
+		Singleton.getInstance = (function() {
+			var instance = null
+			console.log('!')//只执行一次
+			return function(name) {
+				if(!instance) {
+					instance = new Singleton( name )
+				}
+				console.log("!!!!!")
+				return instance
+			}
+		})()
+
+		var a = Singleton.getInstance('aaa');
+		var b = Singleton.getInstance('bbb');
+
+		b.getName()
+	</script>
+</body>
+</html>
