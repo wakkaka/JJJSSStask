@@ -6,11 +6,15 @@
 // import Print1ToMax from './12.打印1到最大的n位数/print.js'
 // import Reverse from './16.反转链表/reverse.js'
 // import Clockwise from './20.顺时针打印矩阵/clockwise.js'
-import Pop from './22.栈的压入弹出序列/pop.js'
-import Suq from './24.二叉搜索树的后序遍历序列/suq.js'
-import Find from './25.二叉树中和为某一值的路径/findSum.js'
-import Clone from './26.复杂链表的复制/clone.js'
-import Convert from './27.二叉搜索树与双向链表/convert.js'
+// import Pop from './22.栈的压入弹出序列/pop.js'
+// import Suq from './24.二叉搜索树的后序遍历序列/suq.js'
+// import Find from './25.二叉树中和为某一值的路径/findSum.js'
+// import Clone from './26.复杂链表的复制/clone.js'
+// import Convert from './27.二叉搜索树与双向链表/convert.js'
+// import Permutation from './28.字符串的排列/permutate.js'
+// import FindMore from './29.数组中出现次数超过一半的数字/findMore.js'
+// import Small from './30.最小的k个数/small.js'
+import Number1 from './32.从1到n整数中1出现的次数/number.js'
 
 function TreeNode(x)
 {
@@ -89,17 +93,49 @@ console.log(Find(8,array))*/
 // console.log(Clone(list))
 
 //27.
-var head = new TreeNode(10)
-var a = new TreeNode(6)
-var b = new TreeNode(4)
-var c = new TreeNode(8)
-var d = new TreeNode(14)
-var e = new TreeNode(12)
-var f = new TreeNode(16)
-head.left = a
-head.right = d
-a.left = b
-a.right = c
-d.left = e
-d.right = f
-console.log(Convert(head))
+// var head = new TreeNode(10)
+// var a = new TreeNode(6)
+// var b = new TreeNode(4)
+// var c = new TreeNode(8)
+// var d = new TreeNode(14)
+// var e = new TreeNode(12)
+// var f = new TreeNode(16)
+// head.left = a
+// head.right = d
+// a.left = b
+// a.right = c
+// d.left = e
+// d.right = f
+// console.log(Convert(head))
+
+//28.
+// var a = 'aa'
+// // console.log(a)
+// console.log(Permutation(a))
+
+// //29.
+// var a = [1,2,3,2,2,2,5,4,2]
+// console.log(FindMore(a))
+// console.log(a)
+
+// function swap(input,a,b) 
+// {
+// 	var tem = input[a]
+// 	input[a]=input[b]
+// 	input[b]=tem
+// }
+//30.
+// var a = [4,5,1,6,2,7,3,8]
+// console.log(Small(a,8))
+// 
+// var a = [1,2,3]
+// console.log(a.slice(1).join('') * 1 + 0)//字符串转数字
+
+//32.
+// var a = 5
+// console.log(Number1(a))
+
+// var a = 5,
+// 	b = 6
+// //数字转字符串
+// console.log(a+''+b)
