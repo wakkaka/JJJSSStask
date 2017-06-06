@@ -14,7 +14,11 @@
 // import Permutation from './28.字符串的排列/permutate.js'
 // import FindMore from './29.数组中出现次数超过一半的数字/findMore.js'
 // import Small from './30.最小的k个数/small.js'
-import Number1 from './32.从1到n整数中1出现的次数/number.js'
+// import Number1 from './32.从1到n整数中1出现的次数/number.js'
+// import FindFirst from './35.第一个只出现一次的字符/findFirst.js'
+import Count from './36.数组中的逆序对/count.js'
+import Times from './38.数字在排序数组中出现的次数/times.js'
+import Balance from './39.平衡二叉树/balance.js'
 
 function TreeNode(x)
 {
@@ -139,3 +143,28 @@ console.log(Find(8,array))*/
 // 	b = 6
 // //数字转字符串
 // console.log(a+''+b)
+
+//35.
+// console.log(FindFirst('google'))
+
+//36.
+// console.log(Count([7,5,6,4]))
+
+//38.
+// console.log(Times( [1,2,3,3,3,3],3 ))
+
+//39.
+var head = new TreeNode(1)
+var a = new TreeNode(2)
+var b = new TreeNode(3)
+var c = new TreeNode(4)
+var d = new TreeNode(5)
+var e = new TreeNode(6)
+var f = new TreeNode(7)
+head.left = a
+head.right = b
+a.left = c
+a.right = d
+d.left = f
+b.right = e
+console.log(Balance(head))
