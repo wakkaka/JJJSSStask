@@ -16,9 +16,15 @@
 // import Small from './30.最小的k个数/small.js'
 // import Number1 from './32.从1到n整数中1出现的次数/number.js'
 // import FindFirst from './35.第一个只出现一次的字符/findFirst.js'
-import Count from './36.数组中的逆序对/count.js'
-import Times from './38.数字在排序数组中出现的次数/times.js'
-import Balance from './39.平衡二叉树/balance.js'
+// import Count from './36.数组中的逆序对/count.js'
+// import Times from './38.数字在排序数组中出现的次数/times.js'
+// import Balance from './39.平衡二叉树/balance.js'
+// import ToSum from './41.和为S的连续正数序列/sumOf.js'
+// import ToSum2 from './41.和为S的两个数字/tosum2.js'
+// import Reverse from './42.左旋转字符串/leftReverse.js'
+// import Reverse from './42.翻转单词顺序/reverse.js'
+// import Con from './44.扑克牌顺子/continuous.js'
+import Numeric from './54.表示数值的字符串/numeric.js'
 
 function TreeNode(x)
 {
@@ -154,17 +160,31 @@ console.log(Find(8,array))*/
 // console.log(Times( [1,2,3,3,3,3],3 ))
 
 //39.
-var head = new TreeNode(1)
-var a = new TreeNode(2)
-var b = new TreeNode(3)
-var c = new TreeNode(4)
-var d = new TreeNode(5)
-var e = new TreeNode(6)
-var f = new TreeNode(7)
-head.left = a
-head.right = b
-a.left = c
-a.right = d
-d.left = f
-b.right = e
-console.log(Balance(head))
+// var head = new TreeNode(1)
+// var a = new TreeNode(2)
+// var b = new TreeNode(3)
+// var c = new TreeNode(4)
+// var d = new TreeNode(5)
+// var e = new TreeNode(6)
+// var f = new TreeNode(7)
+// head.left = a
+// head.right = b
+// a.left = c
+// a.right = d
+// d.left = f
+// b.right = e
+// console.log(Balance(head))
+
+//41.
+// console.log(ToSum(9))
+// console.log(ToSum2([1,2,3,4,5,6],10))
+
+//42.
+// console.log(Reverse('abcdefg' ,2))
+// console.log(Reverse('Ii am a student.'))
+
+//44.
+// console.log(Con([1,3,2,6,4]))
+
+//54.
+console.log(Numeric("123.45e+6"))

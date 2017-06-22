@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>test</title>
 </head>
 <body>
@@ -16,10 +17,159 @@
 	</li>
 </ul>
 
-<span>123123</span>
+<ul id="rollcall">
+	<li>123</li>
+	<li>32</li>
+	<li>222222</li>
+	<li>4252</li>
+	<li>53632</li>
+	<li>315222</li>
+</ul>
+
+<p>This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!This is the test that indent!</p>
+<span id="test">123123</span>
+<h1 class="test">333333</h1>
+<input type="text" name="">
+<input type="radio" name="">dddaaa
+<h1>Hello!!</h1>
+<p>??????</p>
+<p>!!!!</p>
+
+<ul class="items">
+	<li class="select">项目1</li>
+	<li>项目2</li>
+	<li>项目3</li>
+</ul>
+<p style="margin: 0 auto;width: 150px;">asdadadsad</p>
+<!-- 水平垂直居中-->
+<div class="container">
+	<div></div>
+</div>
+
+<!--画圆-->
+<!-- <img src="./test.png" usemap="#planetmap">
+<map name="planetmap">
+  <area shape="circle" coords="100,100,50" background-color="#fff" href="sun.htm" alt="Sun" />
+</map> -->
+
+<svg>
+   <circle cx="100" cy="50" r="40" fill="red" />
+</svg> 
+
+<!-- 水平垂直居中-->
+<!--  <div class="center"></div> -->
+
+<form method='post' action='#' id="prevent">
+    <input type='text' name='username'>
+    <input type='submit' value='提交'>
+</form>
+
 </body>
+<style type="text/css">
+
+	
+
+
+	h1{
+		animation-delay: 0.4s;
+		-webkit-animation:mymove 5s infinite;
+		position:relative;/*必要*/
+	}
+
+	@-webkit-keyframes mymove
+	{
+		from {left:0px;}
+		to {left:200px;}
+	}
+
+	#rollcall li {
+		display: inline;
+		
+	}
+	/*首行缩进*/
+	p{
+		text-indent: 2em;
+		text-decoration: blink;
+		border: 1px solid;/*默认边框和字体一个颜色*/
+	}
+	.container {
+	    display: flex;
+	    align-items: center;        /* 垂直居中 */
+	    justify-content: center;    /* 水平居中 */
+
+	}
+	.container div {
+	    width: 100px;
+	    height: 100px;
+	    background-color: pink;     /* 方便看效果 */
+	}  
+
+	/*水平垂直居中*/
+	.center {
+		position: absolute;
+	    width: 300px;
+	    height: 300px;
+	    margin: auto;
+	    top: 0;
+	    left: 0;
+	    bottom: 0;
+	    right: 0;
+	    background-color: pink; /* 方便看效果 */
+	}
+
+	.items {
+		padding: 0;
+		width: 350px;
+		height: 350px;
+		background: #fff;
+		list-style: none
+	}
+
+	.items li {
+		text-align: center;
+		background-color: silver;
+		border: 1px solid #eee;
+		cursor:pointer;
+	}
+	
+	.items li:hover {
+		color: #fff;
+		background: #000;
+	}
+
+
+	/*解决hover改变已选择目标背景和颜色的问题，增加select的特殊性*/
+	.items li.select {
+		background: #efe;
+		color:#000 
+	}
+	
+
+	*{
+		background-color: #733838
+	}
+	span[class~="test"] {
+		color: red
+	}
+
+
+	/*伪元素*/
+	/*body *:hover {
+		background: silver;
+		font-weight: bold;
+	}*/
+	h1:before {
+		content:"}}";
+		color: silver
+	}
+	h1+p {
+		color:green;
+	}
+</style>
 <script type="text/javascript" src="./jquery-3.1.1.js"></script>
 <script type="text/javascript">
+	var arr = []
+	console.log(arr[0] == null)
 	/*var a = {
 		name:'wakkaka',
 		age:16
@@ -83,8 +233,68 @@
 // })  
 
 //数组填充
-var test = new Array(20)
-test.fill(0)
-console.log(test)
+// var test = new Array(20)
+// test.fill(0)
+// console.log(test)
+
+
+//for的判断作用
+// var num = [1,2,0,3,2,0],
+// 	zero = 0
+// for(var i=0; i<6 && num[i] == 0; ++i)
+// 	++zero
+// console.log(zero)
+
+// //!!的作用
+// var bool = 1
+// console.log(!!bool)
+
+
+//多行读入
+// var n = parseInt(readline());
+// var ans = 0;
+// for(var i = 0;i < n; i++){
+//     lines = readline().split(" ")
+//     for(var j = 0;j < lines.length; j++){
+//         ans += parseInt(lines[j]);
+//     }
+//     print(ans);
+// }
+// var len1 = 3,
+//     arr1 = [1,2,5],
+// 	len2 = 4,
+//     arr2 = [3,1,2,4],
+//     start = 0,
+//     end = len2 - len1,
+//     diff = []
+
+// if(len1<0 || len2<0 || !arr1 || !arr2)
+//     console.log("!")
+// for(var j=0; j<=end; j++)
+// {
+//     for(var i=j; i<j+len1; i++)
+//     {
+//     	if(!diff[j])
+//     		diff[j] = 0
+//         diff[j] += Math.abs( arr1[i-j] - arr2[i] )
+//     }
+// }
+// console.log(diff)
+// var len3 = diff.length,
+//     min = diff[0]
+    
+// for(var k=0; k<len3; k++)
+// {
+//    if(diff[k] < min)
+//        min = diff[k]
+// }
+
+// console.log(min)
+//
+//字符串转数字
+// var test = ["0"]
+// console.log(test[0],test)
+// test[0] = test[0] - 0
+// console.log(test[0],test)
 </script>
 </html>

@@ -2,16 +2,15 @@ function IsBalanced_Solution(pRoot)
 {
     // write code here
     var deep = [],
-        _root = "root"
+        root = "root"
     
-    return isBalanced( pRoot, deep, _root)
+    return isBalanced( pRoot, deep, root)
 }
 
 function isBalanced(pRoot, deep, index)
 {  
     var left = "left",
         right = "right",
-        _root = "root",
         dif
     
     if(pRoot == null)
@@ -23,11 +22,10 @@ function isBalanced(pRoot, deep, index)
     if(isBalanced( pRoot.left, deep, left ) && isBalanced( pRoot.right, deep, right ))
     {
         dif = deep[left] - deep[right]
-        console.log(pRoot.val, deep[left], deep[right], dif)
+        
         if(dif >= -1 && dif <= 1)
         {
-            deep[_root] = 1 + ( deep[left] > deep[right] ? deep[left] : deep[right])
-            console.log(pRoot.val, deep[left], deep[right], deep[_root])
+            deep[index] = 1 + ( deep[left] > deep[right] ? deep[left] : deep[right])
             return true
         }
     }
