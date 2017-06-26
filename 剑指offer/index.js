@@ -25,6 +25,11 @@
 // import Reverse from './42.翻转单词顺序/reverse.js'
 // import Con from './44.扑克牌顺子/continuous.js'
 import Numeric from './54.表示数值的字符串/numeric.js'
+import Del from './57.删除链表中重复的节点/delete.js'
+import Print from './60.把二叉树打印成多行/print.js'
+import Norm from './62.序列化二叉树/normalize.js'
+import Kth from './63.二叉搜索树的第k个结点/kth.js'
+import Heap from './64.数据流中的中位数/heap.js'
 
 function TreeNode(x)
 {
@@ -55,10 +60,10 @@ console.log(Find(8,array))*/
 // Print1ToMax(2)
 
 //16.
-// function ListNode(x){
-//     this.val = x;
-//     this.next = null;
-// }
+function ListNode(x){
+    this.val = x;
+    this.next = null;
+}
 // var ListHead = new ListNode(1)
 // ListHead.next = new ListNode(2)
 // ListHead.next.next = new ListNode(3)
@@ -187,4 +192,89 @@ console.log(Find(8,array))*/
 // console.log(Con([1,3,2,6,4]))
 
 //54.
-console.log(Numeric("123.45e+6"))
+// console.log(Numeric("123.45e+6"))
+
+//57.
+//链表
+// var head = new ListNode(1)
+// var n1 = new ListNode(2)
+// var n2 = new ListNode(3)
+// var n3 = new ListNode(3)
+// var n4 = new ListNode(4)
+// var n5 = new ListNode(4)
+// var n6 = new ListNode(5)
+
+// head.next = n1
+// n1.next = n2
+// n2.next = n3
+// n3.next = n4
+// n4.next = n5
+// n5.next = n6
+
+// console.log(Del(head))
+
+//60.
+//树
+// var head = new TreeNode(8)
+// var a = new TreeNode(6)
+// var b = new TreeNode(10)
+// var d = new TreeNode(7)
+// var e = new TreeNode(9)
+// var f = new TreeNode(11)
+// head.left = a
+// head.right = b
+// a.right = d
+// b.left = e
+// b.right = f
+
+// console.log(Print(head))
+
+//62.
+// var s = Norm.Serialize(head)
+// console.log(s)
+// console.log(Norm.Deserialize(s))
+
+//63.
+// var head = new TreeNode(5)
+// var a = new TreeNode(3)
+// var b = new TreeNode(7)
+// var c = new TreeNode(2)
+// var d = new TreeNode(4)
+// var e = new TreeNode(6)
+// var f = new TreeNode(8)
+// head.left = a
+// head.right = b
+// a.left = c
+// a.right = d
+// b.left = e
+// b.right = f
+// console.log(Kth(head,3))
+
+//64.
+//测试最大堆最小堆 --> ok
+// var maxHeap = new Heap.maxHeap(),
+// 	minHeap = new Heap.minHeap()
+
+// minHeap.insert(6)
+// minHeap.insert(5)
+// minHeap.insert(2)
+// minHeap.insert(9)
+// console.log(minHeap.top())
+// console.log(minHeap.showData())
+
+// maxHeap.insert(6)
+// maxHeap.insert(5)
+// maxHeap.insert(2)
+// maxHeap.insert(9)
+// console.log(maxHeap.top())
+// console.log(maxHeap.showData())
+
+//中位数
+Heap.init()
+var arr = [1,7,6,3,4,8]
+for(var i=0; i<arr.length; i++)
+{
+	Heap.Insert(arr[i])
+}
+
+console.log(Heap.getMid())

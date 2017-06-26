@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style> 
-h1
+<style>
+
+/*动画*/
+/*h1
 {
 
 background:red;
 position:relative;
 animation:mymove 5s infinite;
--webkit-animation:mymove 5s infinite; /*Safari and Chrome*/
-}
+-webkit-animation:mymove 5s infinite; 
+}*/
 
 /*@keyframes mymove
 {
@@ -17,15 +19,100 @@ from {left:0px;}
 to {left:200px;}
 }*/
 
-@-webkit-keyframes mymove /*Safari and Chrome*/
+/*纯css三角形*/
+#demo {
+  width: 0;
+  height: 0;
+  border-width: 20px;/*boeder的形状是一个梯形，当边为0时，上顶边为0，此时为三角形*/
+  border-style: solid;
+  border-color: transparent transparent red transparent;
+}
+
+/*@-webkit-keyframes mymove
 {
 from {left:0px;}
 to {left:200px;}
+}*/
+
+/*品字布局*/
+/**{
+	margin:0;
+	padding:0;
 }
+
+div {
+	width: 100px;
+	height: 100px;
+}
+#top {
+	background-color: silver;
+	margin:0 auto;
+}
+#bottom_L {
+	background-color: black;
+	margin-left: 50%;
+	display: inline-block;
+}
+#bottom_R {
+	background-color: gray;
+	margin-left: -200px;
+	display: inline-block;
+}*/
+
+#contain {
+	margin:0 auto;
+	width: 600px;
+	border: 1px solid #000;
+	overflow: hidden;
+}
+#left {
+	float: left;
+	width:150px;
+	background-color: silver;
+	padding-bottom: 2000px;
+	margin-bottom: -2000px;
+}
+#right {
+	float: left;
+	width: 450px;
+	background-color: red;
+	padding-bottom: 2000px;
+	margin-bottom: -2000px;
+}
+
+
 </style>
 </head>
 <body>
-<h1>123123</h1>
+	<!-- 动画 -->
+	<!-- <h1>123123</h1> -->
 
+	<!-- 三角形 -->
+	<!-- <div id="demo"></div> -->
+	
+	<!-- 品字布局 -->
+	<!-- <div id='top'></div>
+	<div id = 'bottom_L'></div>
+	<div id = 'bottom_R'></div> -->
+	
+	<!-- 等高列布局 -->
+	<div id="contain">
+		<div id="left">lllllllleft<br><br><br><br>asd</div>
+		<div id="right">rrrrright<br><br><br>我比left高hhh</div>
+		<div style='clear:both'></div>
+	</div>
+
+	<!-- float的环绕效果 -->
+	<div style="padding: 10px;border: 1px solid red">
+		lakjsldjalsdhlahsdljhflsahdlfdddjlajlfjlsajfd<br>
+		<div style="float: left;width: 10px;height: 10px;border: 1px solid #000;margin: 10px;"></div>
+		aslkdjlfskjlasdaasdsadsadsadsadsadsdasdsdf<br>
+		slkdfkhakjhwkqeasdasdasdadasdasdsadkajsd<br>
+	</div>
+
+	<!-- 绝对定位的top等参数(width和height的隐含确定) -->
+	<div style="position: relative;width: 300px;height: 300px;background-color: silver;">
+		<div style="position: absolute;top: 50%;left: 50%;right: 0;bottom: 0;background-color: #ccc;bottom: 0;"></div>
+	</div>
 </body>
 </html>
