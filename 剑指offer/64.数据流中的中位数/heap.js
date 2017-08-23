@@ -1,4 +1,5 @@
 //先用数组实现最大堆和最小堆
+//参考为  http://www.jb51.net/article/98512.htm
 function maxHeap()
 {
 	this.init()
@@ -191,6 +192,11 @@ function Insert(num)
 {
 	var tem
 
+	if(!max || !min)
+	{
+		init()
+	}
+
 	if(((max.size() + min.size()) & 1) == 0)
 	{
 		//长度为偶数，插入到最小堆中
@@ -230,7 +236,7 @@ function getMid()
 	{
 		mid = min.top()
 	} else {
-		mid = (min.top() + max.top()) >> 1
+		mid = (min.top() + max.top()) / 2
 	}
 
 	return mid

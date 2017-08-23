@@ -10,7 +10,6 @@ AutoPlay.prototype = {
 
 		//轮播方向
 		this.oDirection = info.direction;
-
 		this.oUl = $$('ul',this.oBox)[0];
 		this.oLi = $$('li',this.oBox);
 		this.oImg = $$('img',this.oBox);

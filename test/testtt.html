@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<table border="1" width="300px">
+	<tr>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td rowspan="2">1</td>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td colspan="3">1</td>
+	</tr>
+</table>
+
+<!-- <div style="display: flex;flex-flow:row;background-color: #f9f7dc" id="flextest">
+	<div id="test1"></div>
+	<div id="test2"></div>
+	<div id="test2"></div>
+	<div id="test2"></div>
+	<div id="test2"></div>
+</div>
+<div style="position: relative">
+	<div id="fixed1" style="width: 100px;height:100px;background-color: red;position: absolute;left: 0;"></div>
+	<div id="flexd" style="height: 500px;background-color: green;left:110px;position: absolute;"></div>
+	<div style="clear: both"></div>
+	<div style="width: 100px;height: 100px;background-color: #000;"></div>	
+</div> -->
+<!-- <div style="display: flex;flex-direction: column;flex-wrap: wrap;height: 440px; width: 660px;">
+	<div style="height: 400px;width:100px;margin-top: 10px;margin-left: 10px;"></div>
+	<div style="height: 200px;width:100px;margin-top: 10px;margin-left: 10px;"></div>
+	<div style="height: 200px;width:100px;margin-top: 10px;margin-left: 10px;"></div>
+	<div style="height: 200px;width:100px;margin-top: 10px;margin-left: 10px;"></div>
+	<div style="height: 200px;width:100px;margin-top: 10px;margin-left: 10px;"></div>
+</div>-->
+
+<!--     <div class="mask">
+        <div class="dialog">
+               未知宽高元素窗口水平垂直居中(拖动右下角改变宽高)"
+        </div>
+    </div>  -->
+
+<div class="box">
+  <p class="text">多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居的垂直居中多行文本的垂直居</p><i></i>
+ </div>
+ </body>
+<style type="text/css">
+	/*未知高度垂直居中*/
+	.box {
+    border: 1px dashed #cccccc;
+    height: 300px;
+	}
+	.box p, .box i {
+	    display: inline-block;
+	    vertical-align: middle;
+	    overflow: hidden;
+	    *display:inline;
+	    *zoom:1;
+	}
+	.box i {
+	    height: 100%;
+	    width: 0;
+	}
+	.box p {
+	    font-size: 14px;
+	    width: 100%;
+	}
+
+
+
+	.mask{
+	    position: fixed;
+	    left: 0;
+	    top:0;
+	    height: 100%;
+	    width: 100%;
+	    text-align: center;
+	    background-color: rgba(200, 200, 200, .2);
+	  
+	}	
+	.mask:after{
+	    content: " ";
+	    display: inline-block;
+	    vertical-align: middle;
+	    height: 100%;
+	}
+
+	.dialog{
+	    display: inline-block;
+	    border: 3px solid lightblue;
+	}
+/*	#flextest div{
+		height: 100px;
+		width: : 100px;
+		background-color: #ccc;
+		border: 1px solid #000;
+	}*/
+/*	#test2 {
+		width: 200px;
+	}
+	#test1 {
+		flex: 1;
+	}*/
+
+</style>
+<!-- <span style="background-color: #ccc;width: 100px;height: 100px;margin:10px;border: 10px solid #fff;">asdasddsadsa</span><br>
+<input type="text" name="" style="margin:20px;">
+<div style="height: 100px;width: 100px;margin:100px;background-color: #ccc;"></div>
+<div style="height: 100px;width: 100px;margin:100px;background-color: #ccc;"></div> -->
+
+<!--垂直居中-->
+<!-- <div style="background-color: #ccc;position:absolute;top: 0;left: 0;right: 0;bottom: 0;top: 50%;left: 50%;transform: translate(-50%, -50%);">1231233333333333333333333333322222222222222222<br><br>dsd<br><br>333333<br><br><br>1111</div> -->
+<script type="text/javascript">
+	// var a = 0
+	// function A () {
+	// 	this.a = 1
+	// 	setTimeout(function () {
+	// 		this.a = 2
+	// 		try {
+	// 			this.b = 'b'
+	// 			throw ''
+	// 		} catch(e) {
+	// 			this.b = 'bb'
+	// 		}
+	// 	}, 0)
+	// 	this.b = 'bbb'
+	// }
+	// var aa = new A()
+
+	// setTimeout(function () {
+	// 	console.log(aa.a)
+	// 	console.log(window.a)
+	// 	console.log(aa.b)
+	// 	console.log(window.b)
+	// })
+	
+	// var v = 'cba';
+	// (function () {
+	// 	var v = 'abc'
+	// 	function A () {
+	// 		var v = 'a'
+	// 		this.getVar = function () {
+	// 			console.log(v)
+	// 		}
+	// 	}
+	// 	function B () {
+	// 		var v = 'b'
+	// 		A.call(this)
+	// 		console.log(this)
+	// 	}
+
+	// 	var b = new B()
+	// 	b.getVar()
+	// }())
+	
+	function Class1(){  
+    this.showTxt = function(){console.log(this.name)}
+	}
+	function Class2(){  
+	    this.name = 'class2';
+	}
+	var class1 = new Class1()
+	var class2 = new Class2() 
+	class1.showTxt.call(class2);
+	console.log(class2.showTxt);//undefined 
+
+	console.log(parseInt(20, 0))
+
+	var scope="global";  
+	function t(){  
+	    var scope;  
+	    console.log(scope);  
+	    scope="local"  
+	    console.log(scope);  
+	}  
+	t(); 
+
+	// for of
+	// var arr = [1,2,3,4]
+	// for(let val of arr) {
+	// 	console.log(val)
+	// } 
+
+	// console.log(0 == null)
+	
+	// 对象的深拷贝
+	function deepCopy (a) {
+		var arr = {}
+		for(var item in a) {
+			arr[item] = typeof a[item] ===  'object' ? deepCopy(a[item]) : a[item]
+		}
+
+		return arr
+	}
+
+	var a = {
+		a: 'hello',
+		b: {
+			a: 'world',
+			c: 'ko'
+		}
+	} 
+
+
+	var b = deepCopy(a)
+	console.log(b)
+</script>
+</html>

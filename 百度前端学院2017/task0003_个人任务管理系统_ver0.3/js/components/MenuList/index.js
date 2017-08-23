@@ -3,7 +3,6 @@ import $ from 'jquery'
 import pubsub from '../../utlis/pubsub'
 
 
-
 class MenuList {
 	constructor(opt) 
 	{

@@ -270,11 +270,9 @@ function ListNode(x){
 // console.log(maxHeap.showData())
 
 //中位数
-Heap.init()
-var arr = [1,7,6,3,4,8]
+var arr = [5,2,3,4,1,6,7,0,8]
 for(var i=0; i<arr.length; i++)
 {
 	Heap.Insert(arr[i])
+	console.log(Heap.getMid())
 }
-
-console.log(Heap.getMid())

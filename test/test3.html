@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cloumn</title>
+	<link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./layui/lay/dest/layui.all.js"></script> 
+
+	<style type="text/css">
+		body,html {
+			width: 100%;
+			height: 100%;
+		}
+		#container {
+			height: 50%;
+			width: 50%;
+			margin:0 auto;
+		}
+		div {
+			margin-left: 20px;
+		}
+		#a,#b,#c,#d,#e {
+			display: inline-block;
+			width: 30px;
+		}
+		#a {
+			background-color: #f00;
+			height: 30%;
+		}
+		#b {
+			background-color: #ddd;
+			height: 80%;
+		}
+		#c {
+			background-color: #0fd;
+			height: 70%;
+		}
+		#d {
+			background-color: #ff0;
+			height: 60%;
+		}
+		#e {
+			background-color: #234;
+			height: 90%;
+		}
+	</style>
+</head>
+<body>
+
+<script type="text/javascript">
+	var element = layui.element()
+</script>
+	<ul class="layui-nav" lay-filter="">
+		<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+		<li class="layui-nav-item"><a href="">关于</a></li>
+	</ul>
+	<div id="container">
+		<div id="a"></div>
+		<div id="b"></div>
+		<div id="c"></div>
+		<div id="d"></div>
+		<div id="e"></div>
+	</div>
+
+	<input id="upload" type="file"></input>
+	<div style="width: 100px;background-color: #ccc;text-overflow: ellipsis;overflow: hidden;text-indent: 2em">
+		12312312asfdasfsafdsgdsagdsa
+	</div>
+	
+	<!-- 圆去掉圆心-->
+	<div style="width: 100px;height: 50px;background-color: transparent;border: 48px solid #ccc;border-bottom:none;border-radius: 50px 50px 0 0;box-sizing: border-box;"></div>
+</body>
+<script type="text/javascript">
+	//文件上传
+	var upload = document.getElementById('upload')
+	upload.addEventListener('change', function (e) {
+		console.log(e)
+	})
+
+	// var a = [1,2,3]
+	// console.log(a.reverse())
+
+	// // 统计一个整数对应二进制中1的个数
+	// function n1 (n) {
+	// 	var count = 0
+	// 	var flag = 1
+
+	// 	while (flag) {
+			
+	// 		if(n & flag) {
+	// 			count ++
+	// 		}
+	// 		flag = flag << 1
+	// 		console.log(flag)
+	// 	}
+
+	// 	return count
+	// }
+
+	// console.log(n1(11))
+
+	// // 小数相等的判断
+	// function compare (num1, num2) {
+	// 	if ((num1 - num2 > -0.0000001) && (num1 - num2 < 0.0000001)) {
+	// 		return true
+	// 	} else {
+	// 		return false
+	// 	}
+	// }
+	// console.log(compare(1.1, 1.1),1.1011 == 1.1011)
+
+	// function TreeNode (val) {
+	// 	this.val = val
+	// 	this.left = null
+	// 	this.right = null
+	// }
+
+	// // 树的遍历
+	// var root = new TreeNode(8)
+	// var a = new TreeNode(6)
+	// var b = new TreeNode(10)
+	// var c = new TreeNode(5)
+	// var d = new TreeNode(7)
+	// var e = new TreeNode(9)
+	// var f = new TreeNode(11)
+	// root.left = a
+	// root.right = b
+	// a.left = c
+	// a.right = d
+	// b.left = e
+	// b.right = f
+
+	// // 中序遍历
+	// function inOrder (root, res) {
+	// 	if (root.left) {
+	// 		inOrder(root.left, res)			
+	// 	}
+	// 	res.push(root.val)
+
+	// 	if (root.right) {
+	// 		inOrder(root.right, res)
+	// 	}
+
+	// 	return res
+
+	// }
+	// // 广度遍历
+	// function widthOrder (root) {
+	// 	var deque = [],
+	// 		node = root,
+	// 		res = []
+
+	// 	if (!root) {
+	// 		return res
+	// 	}
+	// 	deque.push(node)
+	// 	while (deque.length > 0) {
+	// 		node = deque.shift()
+	// 		res.push(node.val)
+
+	// 		if (node.left) {
+	// 			deque.push(node.left)
+	// 		}
+
+	// 		if (node.right) {
+	// 			deque.push(node.right)
+	// 		}
+
+	// 	}
+
+	// 	return res
+	// }
+
+	// var result = []
+	// console.log(widthOrder(root))
+	// console.log(inOrder(root, result))
+
+	// 移除数组中元素
+	var arr = [1,2,3,4,2,4]
+	// function remove(arr, item) {
+	//     if(!arr) {
+	//         return
+	//     }
+	// 	var len = arr.length,
+	//         count
+	//     for(var i = 0; i < len; i++) {
+
+	//         if(arr[i] === item) {
+	//         	console.log(i)
+	//             res.splice(i,1)
+	//         }
+	//     }
+	    
+	//     return res
+	// }
+	// // console.log(remove(arr,2))
+	
+	// function insert(arr, item, index) {
+	//     res = arr.slice(index, 0, item)
+	   
+	//     return res
+	// }
+
+	// console.log(insert(arr,5,2))
+	// arr.splice(1,0,1)
+	// console.log(arr)
+	
+	//统计重复出现的数字
+	// function duplicates(arr) {
+	// 	if(!arr) {
+	//         return
+	//     }
+	    
+	//     var len = arr.length,
+	//         hash = [],
+	//         res = []
+	    
+	//     for(var i = 0; i < len; i++) {
+	//         if(hash[arr[i]] == null) {	        	
+	//             hash[arr[i]] = 0
+	//         } else {
+	//             hash[arr[i]]++
+
+	//         } 
+	//     }
+
+	//     for(var item in hash) {
+	//     	console.log(item, hash[item])
+	//         if(hash[item] > 0) {
+	//             res.push(item)
+	//         }
+	//     }
+	    
+	//     return res
+	// }
+
+	// console.log(duplicates(arr))
+	
+	//计时打点，返回停止函数
+	// function count(start, end) {
+	// 	var timer = setInterval(function () {
+	//         if(start <= end) {
+	//             console.log(start)
+	//             start++
+	//         } else {
+	//         	clearInterval(timer)
+	//         }
+	//     }, 1000)
+	    
+	//     var cancel = function () {
+	//         clearInterval(timer)
+	//     }
+	    
+	//     return cancel
+	// }
+
+	// var cancel = count(1,7)
+	// console.log(cancel)
+	// setTimeout(function() {
+	// 	cancel()
+	// },3000)
+	 
+	// fizzBuzz函数
+	// function fizzBuzz(num) {
+	// 	if(!num || typeof num !== 'number') {
+	// 		console.log(typeof num)
+	//         return false
+	//     } else if ((num % 3 === 0) &&(num % 5 === 0)) {
+	//         return 'fizzbuzz'
+	//     } else if (num % 3 === 0) {
+	//         return 'fizz'
+	//     } else if (num % 5 === 0) {
+	//         return 'buzz'
+	//     } else {
+	//         return num
+	//     }
+	// }
+	// console.log(fizzBuzz(15))
+
+
+	// 闭包
+	// function makeClosures(arr, fn) {
+	// 	var len = arr.length,
+	//         res = []
+	    
+	//     for(var i = 0; i < len; i++) {
+	//         (function (i) {
+	//         	res[i] = function () {
+	//         		return fn(arr[i])
+	//         	}
+	//         })(i)
+	//     }
+	    
+	//     return res
+	// }
+
+	// console.log(makeClosures([1,2,3], function(x) {
+	// 	return x
+	// }))
+	
+	// 计算最后一个单词的长度
+	
+
+	// 利用nodejs的readline()读取用户的整行输入(单行)
+	// const readline = require('readline')
+	// const r1 = readline.createInterface({
+	// 	input: process.stdin,
+	// 	output: process.stdout
+	// })
+
+	// rl.on('line', function (input) {
+	// 	var data = input.split(' ')
+	// 	//write your code here
+	// })
+	
+
+	// 利用nodejs的process.stdin读取用户的多行输入(多行)
+	// process.stdin.resume()
+	// process.stdin.setEncoding('ascii')
+
+	// var input = ''
+	// var input_arr = ''
+
+	// process.stdin.on('data', function (data) {
+	// 	input += data
+	// })
+
+	// process.stdin.on('end', function () {
+	// 	input_arr = input.split('\n')
+	// 	var string = input_arr[0].trim()
+	// 	var char = input_arr[1].trim()
+
+	// 	//console.log(func(你的函数))
+	// })
+
+
+
+	// 最后一个单词的长度
+	// function lastWord (str) {
+	// 	if(!str) {
+	// 		return 
+	// 	}
+	// 	var arr = str.split(' ')
+	// 	var len = arr.length
+	// 	var last = arr[len - 1]
+
+	// 	return last.length
+	// }
+
+	// console.log(lastWord('XSUWHQ'))
+
+	// var arr1 = 'iiiiiiiijjjjjjjjhhh'
+	// var res = arr1.match(/.{8}/g)
+	// console.log(res)
+
+	// var i = 0 
+	// console.log(arr1.substring(i,i+=8))
+	// console.log(i)
+
+
+	// arr2 = [3,4,2,5,2,3]
+	// // console.log(arr2.map(function (value, index) {
+	// // 	return index + ' ' + value
+	// // }))
+
+ //   	arr2 =  Object.keys(arr).sort(function (a, b) {
+ //        return a - b
+ //    })
+ //    console.log(arr2)
+
+ //    console.log('b'.charCodeAt())
+ 
+ // 二维数组的创建
+//  var price = 1000,
+//  	 res = [],
+//  	 pri = [800, 900],
+//  	 val = [1600, 1800],
+//  	 deg = [0, 0]
+
+
+// for(var k = 0; k <= pri.length; k++) {
+// 	res[k] = new Array(price)
+// }
+// for(var k = 0; k <= price; k++) {
+// 	res[0][k] = 0
+// }
+
+// for(var i = 1; i <= pri.length; i++) {
+//     for(var j = 1; j <= price; j++) {
+//         console.log('!')
+//         if(deg[i - 1] === 0) {
+//             // 主件
+//             if(pri[i - 1] <= j) {
+
+//                 res[i][j] = Math.max(res[i - 1][j], (res[i - 1][j - pri[i - 1]] + val[i - 1]))
+//             } else {
+//                 res[i][j] = res[i - 1][j]
+//             }
+//         } else {
+//             // 从件,从属的主件价格为 pri[deg[i - 1]]
+//            	if(pri[i - 1] + pri[deg[i - 1]] <= j) {
+//                 res[i][j] = Math.max(res[i - 1][j], res[i - 1][j - pri[i - 1] - pri[deg[i - 1]]] + val[i - 1] + val[deg[i - 1]])
+//             } else {
+//                 res[i][j] = res[i - 1][j]
+//             }
+//         }
+//     }
+// }
+
+// console.log(res[2][1000])
+
+// var reg = /^(1)+(0)+$/
+// var end = reg.test('1111111100')
+// console.log(end)
+
+
+// mask = [255,0,0,0]
+// var ma = mask.map(function (val) {
+//         var tem = val.toString(2)
+//         if(tem.length === 8) {
+//             return tem
+//         } else {
+//             while(tem.length < 8) {
+//                 tem = '0' + tem
+//             }
+            
+//             return tem
+//         }
+//     }).join('')
+// console.log(reg.test(ma))
+
+//正则
+// var test = 'Eddd:\\Vsdsd1R2\\pdsroduct\\fpgadrive.ssssssc'
+
+// reg = /(\w+)\.(\w+)$/
+// console.log('filce.c'.match(reg)[0])
+
+// var str = "iid0000ffr";
+// var substr = str.match(/id(\S*)ff/);
+// console.log(substr);
+// console.log('142ffffff'.match())
+
+//partition
+// function partition (arr, start, end) {
+// 	var index = arr.length >> 1
+// 	var small = start - 1
+
+// 	swap(arr, index, end)
+// 	for(index = start; index < end; index++) {
+// 		if(arr[index] < arr[end]) {
+// 			small++
+// 			if(small !== index) {
+// 				swap(arr, index, small)
+// 			}
+// 		}
+// 	}
+// 	++small
+// 	swap(arr, small, end)
+
+// 	return small
+// }
+
+// function swap(arr, a, b) {
+// 	var tem = arr[a]
+// 	arr[a] = arr[b]
+// 	arr[b] = tem
+// }
+
+// var arr = [1,5,2,1,2]
+
+// console.log(partition(arr, 0, 4))
+// console.log(arr)
+// var a = new Array()
+// var b = [1,2]
+// console.log(a instanceof Object, b instanceof Array)
+// console.log([].valueOf()+'@'+{}.valueOf()+'@'+[].toString()+'@'+{}.toString())
+// setTimeout(function () {
+// 	console.log(1)
+// },100)
+// setTimeout(function () {
+// 	console.log(2)
+// },0)
+// console.log(3)
+// console.log(0 || 'string')
+// console.log(0 && 'string')
+// console.log(true && 0)
+// var c = 1
+// console.log(window.c)
+
+// function test (input) {
+//     input = input.split(' ')
+//     var a = input[0].split('')
+//     var b = input[1].split('')
+//     var res = []
+//     var len1 = a.length - 1
+//     var len2 = b.length - 1
+//     var count = 0
+
+//     while(len1 >= 0 && len2 >=0) {
+//         if(a[len1] === b[len2]) {
+//             count++
+//         } else {
+//             res.push(count)
+//             count = 0
+//         }
+
+//         len1--
+//         len2--
+//     }
+//     res.push(count)
+    
+//     count = res.reduce(function (a, b) {
+//         if(a > b) {
+//             return a
+//         } else {
+//             return b
+//         }
+//     })
+
+//     console.log(count)
+// }
+
+// test('1234522 1230122')
+// console.log(/^(\d)*$/.test('123'))
+// function toStringA(num) {
+// 	var mod
+// 	var res = ''
+// 	if(num === 1) {
+// 		return 'A'
+// 	}
+// 	while(num > 1) {
+// 		mod = num % 26
+// 		if(mod === 0) {
+// 			res = 'Z' + res
+// 		} else {
+// 			res = String.fromCharCode(65 + mod - 1) + res
+// 		}
+		
+// 		num /= 26
+// 	}
+
+// 	return res
+// }
+
+// console.log(toStringA(51))
+
+
+
+
+
+  //图片懒加载
+ //  var aImages = document.getElementById("SB").getElementsByTagName('img'); //获取id为SB的文档内所有的图片
+ //  loadImg(aImages);
+ //  window.onscroll = function() { //滚动条滚动触发
+ //  loadImg(aImages);
+ //  };
+ //  //getBoundingClientRect 是图片懒加载的核心
+ //  function loadImg(arr) {
+	//   for(var i = 0, len = arr.length; i < len; i++) {
+	// 	  if(arr[i].getBoundingClientRect().top < document.documentElement.clientHeight && !arr[i].isLoad) {
+	// 		  arr[i].isLoad = true; //图片显示标志位
+	// 		  //arr[i].style.cssText = "opacity: 0;"; 
+	// 		  (function(i) {
+	// 			  setTimeout(function() {
+	// 				  if(arr[i].dataset) { //兼容不支持data的浏览器
+	// 				  	aftLoadImg(arr[i], arr[i].dataset.imgurl);
+	// 				  } else {
+	// 				    aftLoadImg(arr[i], arr[i].getAttribute("data-imgurl"));
+	// 				  }
+	// 				  arr[i].style.cssText = "transition: 1s; opacity: 1;" //相当于fadein
+	// 			  }, 500)
+	// 		  })(i);
+	// 	  }
+	//   }
+ //  }
+
+ //  function aftLoadImg(obj, url) {
+ //  var oImg = new Image();
+ //  oImg.onload = function() {
+ //   obj.src = oImg.src; //下载完成后将该图片赋给目标obj目标对象
+ //  }
+ //  oImg.src = url; //oImg对象先下载该图像
+ //  }
+
+	// function commafy(num) {
+	//     return num && num
+	//         .toString()
+	//         .replace(/(\d)(?=(\d{3})+\.)/g, function($0, $1) {
+	//         	console.log($0,$1)
+	//             return $1 + ",";
+	//         });
+	// }
+	// console.log(commafy(1234567.90)); //1,234,567.90
+	
+	function randomNum(min, max) {
+		return min + Math.floor((max - min) * Math.random())
+	}
+
+	console.log(randomNum(10,100))
+</script>
+</html>
+
+
